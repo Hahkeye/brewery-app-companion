@@ -6,7 +6,6 @@
 
 
 function getLocation() {//location grabbing function change latter
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
@@ -48,4 +47,3 @@ function getWeatherByZipCode(zipCode){
         .catch(err => console.error(err));
 
 }
-
