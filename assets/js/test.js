@@ -1,5 +1,20 @@
 
+/* 
+let cardbody = document.getElementsByClassName("card-body")[0];
+cardbody.addEventListener("click", function(e) {
+    cardbody.classList.toggle("scene");
+    console.log("card")
+}
+);
+*/
 
-  card-body.addEventListener('click', function() {
-    (this).find('.flip-card').toggleClass('fliped');
-  })
+$(document).ready(function() {  
+
+    $('.cardflip').click(function() {
+        $(this).toggleClass('hover');
+    });
+  
+  });
+
+
+
