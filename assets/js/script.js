@@ -70,7 +70,7 @@ function promptLocationInput () {
     prompt("Please enter a city and state.");
 }
 
-// If geolocation is accepted, need  to translate lat/long into zip code
+// If geolocation is accepted, translate lat/long into zip code
 function getZipFromLatLong () {
     // http://api.geonames.org/findNearbyPostalCodesJSON?lat=45.5&lng=-94.1&username=hahkeye
     // http://api.geonames.org/findNearbyPostalCodes?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye
@@ -111,7 +111,6 @@ function test(data) {
 // http://dataservice.accuweather.com/forecasts/v1/daily/1day/948?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi
 
 // kayla api key cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi
-
 function getWeatherByZipCode(zipCode){
 
     let key = 0;
