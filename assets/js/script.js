@@ -173,27 +173,32 @@ function displayBreweries(data){
     resultCard.append(resultBody);
 
     // create brewery name `<h3>`
-    let breweryNameEl = document.createElement('h3', /* add CSS styling classes */);
+    let breweryNameEl = document.createElement('h3');
+    // breweryNameEl.classList.add('h3', /* add CSS styling classes */);
     breweryNameEl.textContent = "Name: " + data.name;
 
     // create city `<p>`
-    let breweryCityEl = document.createElement('p', /* add CSS styling classes */);
+    let breweryCityEl = document.createElement('p');
+    // breweryCityEl.classList.add('p', /* add CSS styling classes */);
     breweryCityEl.textContent = "City: " + data.city;
 
     // create phone number `<p>`
-    let breweryPhone = document.createElement('p', /* add CSS styling classes */);
-    breweryPhone.textContent = "Phone number: " + data.phone;
+    let breweryPhoneEl = document.createElement('p');
+    // breweryPhoneEl.classList.add('p', /* add CSS styling classes */);
+    breweryPhoneEl.textContent = "Phone number: " + data.phone;
 
     // create address `<p>`
-    let breweryAddress = document.createElement('p', /* add CSS styling classes */);
-    breweryAddress.textContent = "Address: " + data.street + " " + data.city + " " + data.state + " " + data.postal;
+    let breweryAddressEl = document.createElement('p');
+    // breweryAddressEl.classList.add('p', /* add CSS styling classes */);
+    breweryAddressEl.textContent = "Address: " + data.street + " " + data.city + " " + data.state + " " + data.postal;
 
     // create url `<p>`
-    let breweryWebsite = document.createElement('p', /* add CSS styling classes */);
-    breweryWebsite.textContent = "Website: " + data.website_url;
+    let breweryWebsiteEl = document.createElement('p');
+    // breweryWebsiteEl.classList.add('p', /* add CSS styling classes */);
+    breweryWebsiteEl.textContent = "Website: " + data.website_url;
 
     // append brewery information to resultBody
-    resultBody.append(breweryNameEl, breweryCityEl, breweryPhone, breweryAddress, breweryWebsite);
+    resultBody.append(breweryNameEl, breweryCityEl, breweryPhoneEl, breweryAddressEl, breweryWebsiteEl);
 
     // apend entire contents of resultCard to brewerySearchResults `<div>` in page2.html
     brewerySearchResults.append(resultCard);
