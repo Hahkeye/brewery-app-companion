@@ -2,8 +2,10 @@
 //http://www.zippopotam.us/
 //https://rapidapi.com/stefan.skliarov/api/AccuWeather
 
+// DOM Selectors
+const brewerySearchResults = document.querySelector('#brewery-search-results');
 
-// Global variable
+// Global variables
 const states = {"alaska": "ak","alabama": "al","arkansas": "ar","american samoa": "as","arizona": "az","california": "ca","colorado": "co","connecticut": "ct","district of columbia": "dc","delaware": "de","florida": "fl","georgia": "ga","guam": "gu","hawaii": "hi","iowa": "ia","idaho": "id","illinois": "il","indiana": "in","kansas": "ks","kentucky": "ky","louisiana": "la","massachusetts": "ma","maryland": "md","maine": "me","michigan": "mi","minnesota": "mn","missouri": "mo","mississippi": "ms","montana": "mt","north carolina": "nc","north dakota": "nd","nebraska": "ne","new hampshire": "nh","new jersey": "nj","new mexico": "nm","nevada": "nv","new york": "ny","ohio": "oh","oklahoma": "ok","oregon": "or","pennsylvania": "pa","puerto rico": "pr","rhode island": "ri","south carolina": "sc","south dakota": "sd","tennessee": "tn","texas": "tx","utah": "ut","virginia": "va","virgin islands": "vi","vermont": "vt","washington": "wa","wisconsin": "wi","west virginia": "wv","wyoming": "wy"};
 let coords = 0;
 let breweryTest;
@@ -19,7 +21,6 @@ class Brewery{
         return this.name;
     }
 }
-
 
 /*
 0: 
@@ -42,7 +43,7 @@ updated_at: "2022-08-20T02:56:08.975Z"
 website_url: "http://www.beaverislandbrew.com"
 */
 
-//If the browser doesnt support geolocation block the button from being shown.
+// If the browser doesn't support geolocation block the button from being shown.
 $(function(){
     if(!navigator.geolocation){
         $('#getGeo').css('display','none');
@@ -70,16 +71,16 @@ async function getZipFromLatLong (){
     }
 }
 
-
-async function getBreweriesByZipCode(zipCode,numberOfBrewerys=1){
+async function getBreweriesByZipCode(zipCode,numberOfBreweries=1){
     try{
-        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=${numberOfBrewerys}`);
+        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=${numberOfBreweries}`);
         const data = await response.json();
         return new Brewery(data);
     }catch(e){
         console.log("Error in fetching breweries ", e);
     }    
     // console.log(data);
+    displayBreweries(data);     // Is this the correct location to call this function?
 }
 
 function test(data) {
@@ -102,7 +103,6 @@ async function postalCodeTest(){
     }catch(e){
         console.log("Failed to get postal code. ",e);
     }
-
 }
 
 // Get weather by zipcode
@@ -130,7 +130,6 @@ async function getWeatherByZipCode(zipCode){
         console.log("Error in fetching the weather ", e);
     }    
 }
-
 
 let tempLocation = JSON.parse(localStorage.getItem("location-id"));
 let tempForecast = JSON.parse(localStorage.getItem("forecast"));
@@ -161,11 +160,57 @@ async function tempWeatherStorage(){
     }
 }
 
+function displayBreweries(data){
+    console.log(data);
+    
+    // set up `<div>` to hold result content (this is the parent `<div>`)
+    let resultCard = document.createElement('div');
+    resultCard.classList.add('card', /* add CSS styling classes */);
+
+    // create body `<div>` and append to resultCard
+    let resultBody = document.createElement('div');
+    resultBody.classList.add('card-body', /* add CSS styling classes */);
+    resultCard.append(resultBody);
+
+    // create brewery name `<h3>`
+    let breweryNameEl = document.createElement('h3', /* add CSS styling classes */);
+    breweryNameEl.textContent = "Name: " + data.name;
+
+    // create city `<p>`
+    let breweryCityEl = document.createElement('p', /* add CSS styling classes */);
+    breweryCityEl.textContent = "City: " + data.city;
+
+    // create phone number `<p>`
+    let breweryPhone = document.createElement('p', /* add CSS styling classes */);
+    breweryPhone.textContent = "Phone number: " + data.phone;
+
+    // create address `<p>`
+    let breweryAddress = document.createElement('p', /* add CSS styling classes */);
+    breweryAddress.textContent = "Address: " + data.street + " " + data.city + " " + data.state + " " + data.postal;
+
+    // create url `<p>`
+    let breweryWebsite = document.createElement('p', /* add CSS styling classes */);
+    breweryWebsite.textContent = "Website: " + data.website_url;
+
+    // append brewery information to resultBody
+    resultBody.append(breweryNameEl, breweryCityEl, breweryPhone, breweryAddress, breweryWebsite);
+
+    // apend entire contents of resultCard to brewerySearchResults `<div>` in page2.html
+    brewerySearchResults.append(resultCard);
+}
 
 
 //Listeners
+
+// Geolocation listener
 $('#getGeo').on('click',function(){
     navigator.geolocation.getCurrentPosition(showLocation, promptLocationInput);
     // getLocation();
 });
 
+// Search button listener
+// When the user clicks the search button, what needs to happen?
+    // User is redirected to second page
+    // getBreweriesByZip function is initiated
+    // displayBreweries is called after page redirect
+$('#search-button').on('click', getBreweriesByZipCode);
