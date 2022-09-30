@@ -4,6 +4,7 @@
 
 
 // Global variable
+const states = {"alaska": "ak","alabama": "al","arkansas": "ar","american samoa": "as","arizona": "az","california": "ca","colorado": "co","connecticut": "ct","district of columbia": "dc","delaware": "de","florida": "fl","georgia": "ga","guam": "gu","hawaii": "hi","iowa": "ia","idaho": "id","illinois": "il","indiana": "in","kansas": "ks","kentucky": "ky","louisiana": "la","massachusetts": "ma","maryland": "md","maine": "me","michigan": "mi","minnesota": "mn","missouri": "mo","mississippi": "ms","montana": "mt","north carolina": "nc","north dakota": "nd","nebraska": "ne","new hampshire": "nh","new jersey": "nj","new mexico": "nm","nevada": "nv","new york": "ny","ohio": "oh","oklahoma": "ok","oregon": "or","pennsylvania": "pa","puerto rico": "pr","rhode island": "ri","south carolina": "sc","south dakota": "sd","tennessee": "tn","texas": "tx","utah": "ut","virginia": "va","virgin islands": "vi","vermont": "vt","washington": "wa","wisconsin": "wi","west virginia": "wv","wyoming": "wy"};
 let coords = 0;
 let breweryTest;
 class Brewery{
@@ -41,32 +42,21 @@ updated_at: "2022-08-20T02:56:08.975Z"
 website_url: "http://www.beaverislandbrew.com"
 */
 
-
-// On page load ask for location, if not prompt input
-window.onload = function() {
-    getLocation()
-};
+//If the browser doesnt support geolocation block the button from being shown.
+$(function(){
+    if(!navigator.geolocation){
+        $('#getGeo').css('display','none');
+    }
+});
 
 // Logging geolocation information
 function showLocation (position) {
-    console.log(position.coords.latitude)
-    console.log(position.coords.longitude)
-
     coords = position.coords;
-}
-
-// Retrieving geolocation information
-function getLocation() {//location grabbing function change latter
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showLocation, promptLocationInput);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
 }
 
 // If user blocks geolocation, prompt them to input city and state
 function promptLocationInput () {
-    prompt("Please enter a city and state.");
+    alert("Please enter a city and state.");
 }
    
 // If geolocation is accepted, translate lat/long into zip code
@@ -107,23 +97,6 @@ async function getBreweriesByZipCode(zipCode,numberOfBrewerys=1){
     }    
     // console.log(data);
 }
-
-/*
-function getBreweryByZipCode(zipCode){//handle multiple pages
-    // third act craft brewery
-    // https://api.openbrewerydb.org/breweries?by_name=cooper&per_page=3
-    // https://api.openbrewerydb.org/breweries?by_postal=55129&per_page=3
-
-     fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=3`).then(response =>{
-         return response.json();
-     }).then(data=>{
-         console.log(data);
-         test(data);        
-     }).catch(function(error){
-         console.log("Error in the api request 2", error);
-     });
-}
-*/
 
 function test(data) {
     let brewery = new Brewery(data[0]);
@@ -244,4 +217,10 @@ function tempWeatherStorage() {
     }      
 }
 */
+
+//Listeners
+$('#getGeo').on('click',function(){
+    navigator.geolocation.getCurrentPosition(showLocation, promptLocationInput);
+    // getLocation();
+});
 
