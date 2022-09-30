@@ -8,7 +8,6 @@ let coords = 0;
 let breweryTest;
 class Brewery{
     constructor(blob){
-        console.log(blob);
         this.name = blob.name;
         this.phone = blob.phone;
         this.url = blob.website_url;
@@ -84,21 +83,35 @@ function getZipFromLatLong () {
     });
 }
 
-// Get breweries by zipcode
-function getBreweryByZipCode(zipCode){//handle multiple pages
-    //third act craft brewery
-    //https://api.openbrewerydb.org/breweries?by_name=cooper&per_page=3
-    //https://api.openbrewerydb.org/breweries?by_postal=55129&per_page=3
-
-    fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=3`).then(response =>{
-        return response.json();
-    }).then(data=>{
-        console.log(data);
-        test(data);        
-    }).catch(function(error){
-        console.log("Error in the api request 2", error);
-    });
+async function getBrewerysByZipCode(zipCode,numberOfBrewerys=1){
+    try{
+        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=${numberOfBrewerys}`);
+        const data = await response.json();
+        return new Brewery(data);
+    }catch(e){
+        console.log("Errow in fetching brewerys ",e);
+    }
+    
+    // console.log(data);
 }
+
+
+
+// // Get breweries by zipcode
+// function getBreweryByZipCode(zipCode){//handle multiple pages
+//     //third act craft brewery
+//     //https://api.openbrewerydb.org/breweries?by_name=cooper&per_page=3
+//     //https://api.openbrewerydb.org/breweries?by_postal=55129&per_page=3
+
+//     fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=3`).then(response =>{
+//         return response.json();
+//     }).then(data=>{
+//         console.log(data);
+//         test(data);        
+//     }).catch(function(error){
+//         console.log("Error in the api request 2", error);
+//     });
+// }
 
 function test(data) {
     let brewery = new Brewery(data[0]);
@@ -134,25 +147,6 @@ function getWeatherByZipCode(zipCode){
         console.log("", error);
     })
 
-    // const encodedParams = new URLSearchParams();
-    // encodedParams.append("apiKey", "<REQUIRED>");
-    // encodedParams.append("query", "zipCode");
-
-    // const options = {
-    //     method: 'POST',
-    //     headers: {
-    //         'content-type': 'application/x-www-form-urlencoded',
-    //         'X-RapidAPI-Key': 'SIGN-UP-FOR-KEY',
-    //         'X-RapidAPI-Host': 'AccuWeatherstefan-skliarovV1.p.rapidapi.com'
-    //     },
-    //     body: encodedParams
-    // };
-
-    // fetch('https://accuweatherstefan-skliarovv1.p.rapidapi.com/searchPostalCode', options)
-    //     .then(response => response.json())
-    //     .then(response => console.log(response))
-    //     .catch(err => console.error(err));
-
 }
 
 let tempLocation = JSON.parse(localStorage.getItem("location-id"));
@@ -184,3 +178,4 @@ function tempWeatherStorage() {
         })
     }      
 }
+
