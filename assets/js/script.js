@@ -68,50 +68,62 @@ function getLocation() {//location grabbing function change latter
 function promptLocationInput () {
     prompt("Please enter a city and state.");
 }
-
+   
 // If geolocation is accepted, translate lat/long into zip code
-function getZipFromLatLong () {
+async function getZipFromLatLong (){
+    try{
+        const response = await fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`);
+        const data = await response.json();
+        return data;
+    }catch(e){
+        console.log("Error in fetching zipcodes ", e);
+    }
+}
+
+/*
+function getZipFromLatLong() {
+
     // http://api.geonames.org/findNearbyPostalCodesJSON?lat=45.5&lng=-94.1&username=hahkeye
     // http://api.geonames.org/findNearbyPostalCodes?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye
 
-    fetch (`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`).then(response =>{
+  fetch (`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`)  
+    .then(response =>{
         return response.json();
     }).then(data=>{
         console.log(data);
     }).catch(function(error){
         console.log("", error);
     });
-}
+}   
+*/
 
-async function getBrewerysByZipCode(zipCode,numberOfBrewerys=1){
+async function getBreweriesByZipCode(zipCode,numberOfBrewerys=1){
     try{
         const response = await fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=${numberOfBrewerys}`);
         const data = await response.json();
         return new Brewery(data);
     }catch(e){
-        console.log("Errow in fetching brewerys ",e);
-    }
-    
+        console.log("Error in fetching breweries ", e);
+    }    
     // console.log(data);
 }
 
+/*
+function getBreweryByZipCode(zipCode){//handle multiple pages
+    // third act craft brewery
+    // https://api.openbrewerydb.org/breweries?by_name=cooper&per_page=3
+    // https://api.openbrewerydb.org/breweries?by_postal=55129&per_page=3
 
-
-// // Get breweries by zipcode
-// function getBreweryByZipCode(zipCode){//handle multiple pages
-//     //third act craft brewery
-//     //https://api.openbrewerydb.org/breweries?by_name=cooper&per_page=3
-//     //https://api.openbrewerydb.org/breweries?by_postal=55129&per_page=3
-
-//     fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=3`).then(response =>{
-//         return response.json();
-//     }).then(data=>{
-//         console.log(data);
-//         test(data);        
-//     }).catch(function(error){
-//         console.log("Error in the api request 2", error);
-//     });
-// }
+     fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=3`).then(response =>{
+         return response.json();
+     }).then(data=>{
+         console.log(data);
+         test(data);        
+     }).catch(function(error){
+         console.log("Error in the api request 2", error);
+     });
+}
+*/
 
 function test(data) {
     let brewery = new Brewery(data[0]);
@@ -119,12 +131,38 @@ function test(data) {
 }
 
 // Get weather by zipcode
-// http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1
+async function getWeatherByZipCode(zipCode){
 
-// http://dataservice.accuweather.com/forecasts/v1/daily/1day/948?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi
+    let key = 0;
+    
+    // First fetch to capture zipcode "Key"
+    try{    
+        const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`);
+        const data = await response.json();
+        console.log(data);
+        key = data.Key;
+        console.log(key); 
+    }catch(e){
+        console.log("Error in fetching zipcode key ", e);
+    }
+    
+    // Second fetch to capture area forecast based on key
+    try{
+        const response = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`);
+        const data = await response.json();
+        return data;
+    }catch(e){
+        console.log("Error in fetching the weather ", e);
+    }    
+}
 
-// kayla api key cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi
+/*
 function getWeatherByZipCode(zipCode){
+    // http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1
+
+    // http://dataservice.accuweather.com/forecasts/v1/daily/1day/948?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi
+
+    // kayla api key cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi
 
     let key = 0;
 
@@ -148,10 +186,38 @@ function getWeatherByZipCode(zipCode){
     })
 
 }
+*/
 
 let tempLocation = JSON.parse(localStorage.getItem("location-id"));
 let tempForecast = JSON.parse(localStorage.getItem("forecast"));
 
+async function tempWeatherStorage(){
+    
+    if (!localStorage.getItem("forecast")){
+
+        try{
+            const response = await fetch (`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`);
+            const data = await response.json();
+            console.log(data);
+            localStorage.setItem("location-id", JSON.stringify(data));
+            key = data.Key;
+            console.log(key);
+        }catch(e){
+            console.log("Error in storing location information ", e);
+        }      
+        
+        try{
+            const response = await fetch (`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`);
+            const data = await response.json();
+            console.log(data);
+            localStorage.setItem("forecast", JSON.stringify(data));
+        }catch(e){
+            console.log("Error in storing forecast information ", e);
+        }
+    }
+}
+
+/*
 function tempWeatherStorage() {
     
     if (!localStorage.getItem("forecast")){
@@ -178,4 +244,5 @@ function tempWeatherStorage() {
         })
     }      
 }
+*/
 
