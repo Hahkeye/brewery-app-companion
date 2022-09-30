@@ -204,7 +204,6 @@ function displayBreweries(data){
     brewerySearchResults.append(resultCard);
 }
 
-
 //Listeners
 
 // Geolocation listener
