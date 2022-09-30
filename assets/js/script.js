@@ -184,7 +184,6 @@ function getWeatherByZipCode(zipCode){
     }).catch(function(error){
         console.log("", error);
     })
-
 }
 */
 
