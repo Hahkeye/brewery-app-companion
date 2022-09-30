@@ -70,22 +70,6 @@ async function getZipFromLatLong (){
     }
 }
 
-/*
-function getZipFromLatLong() {
-
-    // http://api.geonames.org/findNearbyPostalCodesJSON?lat=45.5&lng=-94.1&username=hahkeye
-    // http://api.geonames.org/findNearbyPostalCodes?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye
-
-  fetch (`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`)  
-    .then(response =>{
-        return response.json();
-    }).then(data=>{
-        console.log(data);
-    }).catch(function(error){
-        console.log("", error);
-    });
-}   
-*/
 
 async function getBreweriesByZipCode(zipCode,numberOfBrewerys=1){
     try{
@@ -101,6 +85,24 @@ async function getBreweriesByZipCode(zipCode,numberOfBrewerys=1){
 function test(data) {
     let brewery = new Brewery(data[0]);
     console.log(brewery);
+}
+
+async function postalCodeTest(){
+    //state,city
+    let state=$('#state').val();
+    let city=$('#city').val();
+    try{
+        const response = await fetch(`https://api.zippopotam.us/US/${state}/${city}`)
+        if(response.status=="404"){
+            alert("Please enter a valid city and state");
+        }else{
+            const data = await response.json();
+            console.log(data);
+        }
+    }catch(e){
+        console.log("Failed to get postal code. ",e);
+    }
+
 }
 
 // Get weather by zipcode
@@ -129,36 +131,6 @@ async function getWeatherByZipCode(zipCode){
     }    
 }
 
-/*
-function getWeatherByZipCode(zipCode){
-    // http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1
-
-    // http://dataservice.accuweather.com/forecasts/v1/daily/1day/948?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi
-
-    // kayla api key cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi
-
-    let key = 0;
-
-    fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`).then(response =>{
-        return response.json();
-    }).then(data =>{
-        console.log(data);
-        key = data.Key;
-        console.log(key);
-        
-        fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`).then(response =>{
-            return response.json();
-        }).then(data =>{
-            console.log(data);
-        }).catch(function(error){
-            console.log("", error);
-        })          
-        
-    }).catch(function(error){
-        console.log("", error);
-    })
-}
-*/
 
 let tempLocation = JSON.parse(localStorage.getItem("location-id"));
 let tempForecast = JSON.parse(localStorage.getItem("forecast"));
@@ -189,34 +161,7 @@ async function tempWeatherStorage(){
     }
 }
 
-/*
-function tempWeatherStorage() {
-    
-    if (!localStorage.getItem("forecast")){
-        
-        fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`).then(response =>{
-            return response.json();
-        }).then(data =>{
-            console.log(data);
-            localStorage.setItem("location-id", JSON.stringify(data));
-            key = data.Key;
-            console.log(key);
-            
-        fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`).then(response =>{
-                return response.json();
-            }).then(data =>{
-                console.log(data);
-                localStorage.setItem("forecast", JSON.stringify(data));
-            }).catch(function(error){
-                console.log("", error);
-            })          
-            
-            }).catch(function(error){
-                console.log("", error);
-        })
-    }      
-}
-*/
+
 
 //Listeners
 $('#getGeo').on('click',function(){
