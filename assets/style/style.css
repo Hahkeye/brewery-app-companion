@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+/* 
+  body {
+    color: #db1616;
+    font-family: Helvetica, Arial, sans-serif;
+    background-image: url("D:\bootcamp\group-projects\group-project-1\brewery-app-companion\assets\images\beer.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    
+  } */
+
+header {
+    padding: 60px 40px;
+    background-color: #e41f1f;
+    display:flex;
+    background-image: url("../images/beer.jpg");
+    background-size:cover;
+    width: 100%;
+    height: 100%;
+    justify-content:center;
+    flex-wrap: wrap;
+   
+  }
+
+  header.h1 {
+    font-weight: bold;
+    font-size: 45px;
+    align-items: center;
+    margin:auto;
+
+  }
+
+  header.nav {
+    margin: 20px 5px;
+  }
+
+header.nav.ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  }
+
+header nav ul li a {
+    margin: 0 30px;
+    font-weight: lighter;
+    font-size: 1.3vw;
+    text-decoration: none;
+    border-bottom: 2px solid;
+    padding-bottom: 2px;
+  }
