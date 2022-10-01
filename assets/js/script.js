@@ -44,6 +44,9 @@ website_url: "http://www.beaverislandbrew.com"
 */
 
 // If the browser doesn't support geolocation block the button from being shown.
+let tempLocation = JSON.parse(localStorage.getItem("location-id"));
+let tempForecast = JSON.parse(localStorage.getItem("forecast"));
+//If the browser doesnt support geolocation block the button from being shown.
 $(function(){
     if(!navigator.geolocation){
         $('#getGeo').css('display','none');
@@ -53,6 +56,7 @@ $(function(){
 // Logging geolocation information
 function showLocation (position) {
     coords = position.coords;
+
 }
 
 // If user blocks geolocation, prompt them to input city and state
@@ -65,7 +69,8 @@ async function getZipFromLatLong (){
     try{
         const response = await fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`);
         const data = await response.json();
-        return data;
+        console.log(data.postalCodes[0].postalCode);
+        // return data.postalCodes[0].postalCode;
     }catch(e){
         console.log("Error in fetching zipcodes ", e);
     }
@@ -75,7 +80,8 @@ async function getBreweriesByZipCode(zipCode,numberOfBreweries=1){
     try{
         const response = await fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=${numberOfBreweries}`);
         const data = await response.json();
-        return new Brewery(data);
+        console.log(data);
+        // return new Brewery(data);
     }catch(e){
         console.log("Error in fetching breweries ", e);
     }    
@@ -88,17 +94,51 @@ function test(data) {
     console.log(brewery);
 }
 
-async function postalCodeTest(){
-    //state,city
+async function testLocal(){
+    try{
+        const response = await fetch(`http://127.0.0.1:5000/games`);
+        const data = await response.json();
+        console.log(data);
+        // return new Brewery(data);
+    }catch(e){
+        console.log("Error in fetching breweries ", e);
+    }    
+}
+
+
+function validState(){
     let state=$('#state').val();
+    if(states[state]){
+        console.log(states[state]);
+        validCity(states[state]);
+
+    }else{
+        alert("Please enter a valid state.");
+    }
+}
+
+// function populateZips(blob){
+//     console.log(blob["place name"]);
+//     $('#cityDisplay').text(blob["place name"]);
+
+// }
+
+async function validCity(state){
     let city=$('#city').val();
+    
     try{
         const response = await fetch(`https://api.zippopotam.us/US/${state}/${city}`)
         if(response.status=="404"){
-            alert("Please enter a valid city and state");
+            alert("Please enter a valid city.");
         }else{
             const data = await response.json();
-            console.log(data);
+            data.places[0]["post code"];
+            console.log(data.places[0]["post code"]);
+            getBreweriesByZipCode(data.places[0]["post code"]);
+            console.log(tempForecast);
+            //getWeatherByZipCode would be called here but we are using the temp storage for now
+            // populateZips(data);
+            // console.log(data);
         }
     }catch(e){
         console.log("Failed to get postal code. ",e);
@@ -130,9 +170,6 @@ async function getWeatherByZipCode(zipCode){
         console.log("Error in fetching the weather ", e);
     }    
 }
-
-let tempLocation = JSON.parse(localStorage.getItem("location-id"));
-let tempForecast = JSON.parse(localStorage.getItem("forecast"));
 
 async function tempWeatherStorage(){
     
@@ -209,7 +246,6 @@ function displayBreweries(data){
 // Geolocation listener
 $('#getGeo').on('click',function(){
     navigator.geolocation.getCurrentPosition(showLocation, promptLocationInput);
-    // getLocation();
 });
 
 // Search button listener
