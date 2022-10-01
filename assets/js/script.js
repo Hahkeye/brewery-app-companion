@@ -2,8 +2,11 @@
 //http://www.zippopotam.us/
 //https://rapidapi.com/stefan.skliarov/api/AccuWeather
 
+// DOM Selectors
+const brewerySearchResults = document.querySelector('#brewery-search-results');
 
-// Global variable
+// Global variables
+const states = {"alaska": "ak","alabama": "al","arkansas": "ar","american samoa": "as","arizona": "az","california": "ca","colorado": "co","connecticut": "ct","district of columbia": "dc","delaware": "de","florida": "fl","georgia": "ga","guam": "gu","hawaii": "hi","iowa": "ia","idaho": "id","illinois": "il","indiana": "in","kansas": "ks","kentucky": "ky","louisiana": "la","massachusetts": "ma","maryland": "md","maine": "me","michigan": "mi","minnesota": "mn","missouri": "mo","mississippi": "ms","montana": "mt","north carolina": "nc","north dakota": "nd","nebraska": "ne","new hampshire": "nh","new jersey": "nj","new mexico": "nm","nevada": "nv","new york": "ny","ohio": "oh","oklahoma": "ok","oregon": "or","pennsylvania": "pa","puerto rico": "pr","rhode island": "ri","south carolina": "sc","south dakota": "sd","tennessee": "tn","texas": "tx","utah": "ut","virginia": "va","virgin islands": "vi","vermont": "vt","washington": "wa","wisconsin": "wi","west virginia": "wv","wyoming": "wy"};
 let coords = 0;
 let breweryTest;
 class Brewery{
@@ -18,7 +21,6 @@ class Brewery{
         return this.name;
     }
 }
-
 
 /*
 0: 
@@ -41,142 +43,214 @@ updated_at: "2022-08-20T02:56:08.975Z"
 website_url: "http://www.beaverislandbrew.com"
 */
 
-
-// On page load ask for location, if not prompt input
-window.onload = function() {
-    getLocation()
-};
+// If the browser doesn't support geolocation block the button from being shown.
+let tempLocation = JSON.parse(localStorage.getItem("location-id"));
+let tempForecast = JSON.parse(localStorage.getItem("forecast"));
+//If the browser doesnt support geolocation block the button from being shown.
+$(function(){
+    if(!navigator.geolocation){
+        $('#getGeo').css('display','none');
+    }
+});
 
 // Logging geolocation information
 function showLocation (position) {
-    console.log(position.coords.latitude)
-    console.log(position.coords.longitude)
-
     coords = position.coords;
-}
 
-// Retrieving geolocation information
-function getLocation() {//location grabbing function change latter
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showLocation, promptLocationInput);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
 }
 
 // If user blocks geolocation, prompt them to input city and state
 function promptLocationInput () {
-    prompt("Please enter a city and state.");
+    alert("Please enter a city and state.");
 }
-
-// If geolocation is accepted, need  to translate lat/long into zip code
-function getZipFromLatLong () {
-    // http://api.geonames.org/findNearbyPostalCodesJSON?lat=45.5&lng=-94.1&username=hahkeye
-    // http://api.geonames.org/findNearbyPostalCodes?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye
-
-    fetch (`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`).then(response =>{
-        return response.json();
-    }).then(data=>{
-        console.log(data);
-    }).catch(function(error){
-        console.log("", error);
-    });
-}
-
-async function getBrewerysByZipCode(zipCode,numberOfBrewerys=1){
+   
+// If geolocation is accepted, translate lat/long into zip code
+async function getZipFromLatLong (){
     try{
-        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=${numberOfBrewerys}`);
+        const response = await fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`);
         const data = await response.json();
-        return new Brewery(data);
+        console.log(data.postalCodes[0].postalCode);
+        // return data.postalCodes[0].postalCode;
     }catch(e){
-        console.log("Errow in fetching brewerys ",e);
+        console.log("Error in fetching zipcodes ", e);
     }
-    
-    // console.log(data);
 }
 
-
-
-// // Get breweries by zipcode
-// function getBreweryByZipCode(zipCode){//handle multiple pages
-//     //third act craft brewery
-//     //https://api.openbrewerydb.org/breweries?by_name=cooper&per_page=3
-//     //https://api.openbrewerydb.org/breweries?by_postal=55129&per_page=3
-
-//     fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=3`).then(response =>{
-//         return response.json();
-//     }).then(data=>{
-//         console.log(data);
-//         test(data);        
-//     }).catch(function(error){
-//         console.log("Error in the api request 2", error);
-//     });
-// }
+async function getBreweriesByZipCode(zipCode,numberOfBreweries=1){
+    try{
+        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=${numberOfBreweries}`);
+        const data = await response.json();
+        console.log(data);
+        // return new Brewery(data);
+    }catch(e){
+        console.log("Error in fetching breweries ", e);
+    }    
+    // console.log(data);
+    displayBreweries(data);     // Is this the correct location to call this function?
+}
 
 function test(data) {
     let brewery = new Brewery(data[0]);
     console.log(brewery);
 }
 
-// Get weather by zipcode
-// http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1
-
-// http://dataservice.accuweather.com/forecasts/v1/daily/1day/948?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi
-
-// kayla api key cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi
-
-function getWeatherByZipCode(zipCode){
-
-    let key = 0;
-
-    fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`).then(response =>{
-        return response.json();
-    }).then(data =>{
+async function testLocal(){
+    try{
+        const response = await fetch(`http://127.0.0.1:5000/games`);
+        const data = await response.json();
         console.log(data);
-        key = data.Key;
-        console.log(key);
-        
-        fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`).then(response =>{
-            return response.json();
-        }).then(data =>{
-            console.log(data);
-        }).catch(function(error){
-            console.log("", error);
-        })          
-        
-    }).catch(function(error){
-        console.log("", error);
-    })
-
+        // return new Brewery(data);
+    }catch(e){
+        console.log("Error in fetching breweries ", e);
+    }    
 }
 
-let tempLocation = JSON.parse(localStorage.getItem("location-id"));
-let tempForecast = JSON.parse(localStorage.getItem("forecast"));
 
-function tempWeatherStorage() {
+function validState(){
+    let state=$('#state').val();
+    if(states[state]){
+        console.log(states[state]);
+        validCity(states[state]);
+
+    }else{
+        alert("Please enter a valid state.");
+    }
+}
+
+// function populateZips(blob){
+//     console.log(blob["place name"]);
+//     $('#cityDisplay').text(blob["place name"]);
+
+// }
+
+async function validCity(state){
+    let city=$('#city').val();
+    
+    try{
+        const response = await fetch(`https://api.zippopotam.us/US/${state}/${city}`)
+        if(response.status=="404"){
+            alert("Please enter a valid city.");
+        }else{
+            const data = await response.json();
+            data.places[0]["post code"];
+            console.log(data.places[0]["post code"]);
+            getBreweriesByZipCode(data.places[0]["post code"]);
+            console.log(tempForecast);
+            //getWeatherByZipCode would be called here but we are using the temp storage for now
+            // populateZips(data);
+            // console.log(data);
+        }
+    }catch(e){
+        console.log("Failed to get postal code. ",e);
+    }
+}
+
+// Get weather by zipcode
+async function getWeatherByZipCode(zipCode){
+
+    let key = 0;
+    
+    // First fetch to capture zipcode "Key"
+    try{    
+        const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`);
+        const data = await response.json();
+        console.log(data);
+        key = data.Key;
+        console.log(key); 
+    }catch(e){
+        console.log("Error in fetching zipcode key ", e);
+    }
+    
+    // Second fetch to capture area forecast based on key
+    try{
+        const response = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`);
+        const data = await response.json();
+        return data;
+    }catch(e){
+        console.log("Error in fetching the weather ", e);
+    }    
+}
+
+async function tempWeatherStorage(){
     
     if (!localStorage.getItem("forecast")){
-        
-        fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`).then(response =>{
-            return response.json();
-        }).then(data =>{
+
+        try{
+            const response = await fetch (`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`);
+            const data = await response.json();
             console.log(data);
             localStorage.setItem("location-id", JSON.stringify(data));
             key = data.Key;
             console.log(key);
-            
-        fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`).then(response =>{
-                return response.json();
-            }).then(data =>{
-                console.log(data);
-                localStorage.setItem("forecast", JSON.stringify(data));
-            }).catch(function(error){
-                console.log("", error);
-            })          
-            
-            }).catch(function(error){
-                console.log("", error);
-        })
-    }      
+        }catch(e){
+            console.log("Error in storing location information ", e);
+        }      
+        
+        try{
+            const response = await fetch (`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`);
+            const data = await response.json();
+            console.log(data);
+            localStorage.setItem("forecast", JSON.stringify(data));
+        }catch(e){
+            console.log("Error in storing forecast information ", e);
+        }
+    }
 }
 
+function displayBreweries(data){
+    console.log(data);
+    
+    // set up `<div>` to hold result content (this is the parent `<div>`)
+    let resultCard = document.createElement('div');
+    resultCard.classList.add('card', /* add CSS styling classes */);
+
+    // create body `<div>` and append to resultCard
+    let resultBody = document.createElement('div');
+    resultBody.classList.add('card-body', /* add CSS styling classes */);
+    resultCard.append(resultBody);
+
+    // create brewery name `<h3>`
+    let breweryNameEl = document.createElement('h3');
+    // breweryNameEl.classList.add('h3', /* add CSS styling classes */);
+    breweryNameEl.textContent = "Name: " + data.name;
+
+    // create city `<p>`
+    let breweryCityEl = document.createElement('p');
+    // breweryCityEl.classList.add('p', /* add CSS styling classes */);
+    breweryCityEl.textContent = "City: " + data.city;
+
+    // create phone number `<p>`
+    let breweryPhoneEl = document.createElement('p');
+    // breweryPhoneEl.classList.add('p', /* add CSS styling classes */);
+    breweryPhoneEl.textContent = "Phone number: " + data.phone;
+
+    // create address `<p>`
+    let breweryAddressEl = document.createElement('p');
+    // breweryAddressEl.classList.add('p', /* add CSS styling classes */);
+    breweryAddressEl.textContent = "Address: " + data.street + " " + data.city + " " + data.state + " " + data.postal;
+
+    // create url `<p>`
+    let breweryWebsiteEl = document.createElement('p');
+    // breweryWebsiteEl.classList.add('p', /* add CSS styling classes */);
+    breweryWebsiteEl.textContent = "Website: " + data.website_url;
+
+    // append brewery information to resultBody
+    resultBody.append(breweryNameEl, breweryCityEl, breweryPhoneEl, breweryAddressEl, breweryWebsiteEl);
+
+    // apend entire contents of resultCard to brewerySearchResults `<div>` in page2.html
+    brewerySearchResults.append(resultCard);
+}
+
+//Listeners
+
+// Geolocation listener
+$('#getGeo').on('click',function(){
+    navigator.geolocation.getCurrentPosition(showLocation, promptLocationInput);
+});
+
+// Search button listener
+// When the user clicks the search button, what needs to happen?
+    // User is redirected to second page
+    // getBreweriesByZip function is initiated
+    // displayBreweries is called after page redirect
+$('#search-button').on('click', getBreweriesByZipCode);
