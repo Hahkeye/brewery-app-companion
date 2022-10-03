@@ -12,11 +12,19 @@
     background-size:cover;
     background-repeat: no-repeat;
     
-  } */
+} */
 
+
+/* Body styling */
+body {    
+    background-image: url(https://images.pexels.com/photos/1022692/pexels-photo-1022692.jpeg?cs=srgb&dl=pexels-frans-van-heerden-1022692.jpg&fm=jpg);
+    background-size: cover;    
+}
+
+
+/* Header styling */
 header {
-    padding: 60px 40px;
-    background-color: #e41f1f;
+    padding: 60px 40px;    
     display:flex;
     background-image: url("../images/beer.jpg");
     background-size:cover;
@@ -26,65 +34,46 @@ header {
     flex-wrap: wrap;   
 }
 
-header.h1 {
+h1 {
     font-weight: bold;
-    font-size: 45px;
+    font-size: 2rem;
     align-items: center;
     margin:auto;
 }
 
-header.nav {
-    margin: 20px 5px;
+p {
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
-header.nav.ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  }
-
-header nav ul li a {
-    margin: 0 30px;
-    font-weight: lighter;
-    font-size: 1.3vw;
-    text-decoration: none;
-    border-bottom: 2px solid;
-    padding-bottom: 2px;
-}
-
-body {
-    background-image: url(https://images.pexels.com/photos/1022692/pexels-photo-1022692.jpeg?cs=srgb&dl=pexels-frans-van-heerden-1022692.jpg&fm=jpg);
-    background-size: cover;
-}
-
-.jumbotron {
-    background-color: rgb(142, 136, 136) !important;
+.jumbotron {    
+    background-color: white;
+    opacity: 0.7;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;    
 }
 
-.column1 {
-    /* float: left; */
-    /* width: 50%; */
+
+/* Page 1 search bar styling */
+.search-bar-1 {    
     background-color: white;
-    /* padding: 200px; */
-    opacity: 0.7;    
+    opacity: 0.7;
+    padding: 20px 20px; 
+    margin-left: 25%; 
+    margin-top: 50px;  
+    text-align: center;
+    font-weight: bold;    
 }
 
-/* .column2 {
-    /* float: left;
-    width: 50%;
-    background-color: white;
-    padding: 200px;
-    opacity: 0.7;
-   /* border: black solid;   
-} */
 
-/* .row {   
-      
-} */
+/* Page 1 main content styling */
+
+
+/* Page 2 search bar styling */
+.column1 {      
+    background-color: white;
+    opacity: 0.7;    
+}
 
 h2 {
     font-size: 1.25rem;
