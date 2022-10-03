@@ -197,6 +197,7 @@ async function tempWeatherStorage(){
     }
 }
 
+// Need to connect to html page 2
 function displayBreweries(data){
     console.log(data);
     

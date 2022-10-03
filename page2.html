@@ -9,30 +9,30 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
         <title>Brewery Funerizier</title>
     </head>
-    <body>
-       <div class="sidebar">
-            <form id="search">
-                <label>City</label>
-                <input type="text" id="city">
-                <label>State</label>
-                <input type="text" id="state">
-                <input type="submit">
-            </form> 
+    
+    <body class="container-fluid m-0 p-0">       
             <div class="row">
-                <div class="column1" >
-                    <div class="col-md-5 col-md-offset-2"></div>
+                <div class="col-md-4" id="search-area">
+                    <h2>Search again here!</h2>
+                    <form id="search">
+                        <div>
+                            <label>City</label>
+                            <input type="text" id="city">
+                        </div>
+                        <div>
+                            <label>State</label>
+                            <input type="text" id="state">
+                        </div>
+                        <input type="submit">
+                    </form>
+                </div>    
+                <div class="col-md-8 column1" id="brewery-search-results">                
                     <h2>Column 1</h2>
                     <p>content</p>
                 </div>
-            <div class="row"></div>
-            <div class="column2" >
-                <div class="col-md-5 col-md-offset-2"></div>
-                    <h2>Column 2</h2>
-                    <p>content</p>
-                </div>
-        </div>
-            <div id="brewery-search-results">
-        </div>
-        
-    </body>
+            </div>          
+        </body>               
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="./assets/js/godhelpme.js"></script>
+    <script src="./assets/js/script.js"></script>
 </html>
