@@ -1,141 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./assets/style/reset.css">
-        <link rel="stylesheet" href="./assets/style/style.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-        <title>Brewery Funerizier</title>
-    </head>
-          
-
-            
-<body>
-   <header>
-
-    <h1>Brewery Funerizier</h1>
-
-    </header>   
-
-    <h1> Brewery Finder </h1>
-        
-    <h1>Brewery Funerizier</h1>
-            
-    <body>
-
-        <h2> Brewery Finder </h2>
-        
-        <form action="javascript:search()">
-
-        <label>city</label>
-
-        <input type="text" id="city">
-
-        <label>state</label>
-
-        <input type="text" id="state">
-
-        <button type="submit">Search</button>
-
-        </form>
-
-               <li>
-                <button class="footer-toggle" onclick="boxToggle()"> About this app </button>
-                          <!-- clickable dropdown with info on about the app-->
-                        <div id = "toggle">
-                            <p>
-                                This app is intended for people that is planning to go to a brewery to drink and play games!
-                                Remember, if you are gonna drink and drive, do it right and make sure you're the only one who
-                                gets injured, moron. 
-                            </p>
-                        </div>                   
-                </li>
-                <li>
-                    <button class="footer-toggle" onclick="boxToggle2()">Authors </button> 
-                    <div id = "toggle2">
-                        <p>
-                            This app has been made by the coolest people that could have ever existed and Luis. 
-                        </p>
-                    </div>     
-                </li>
-                <li>   
-                    <button class="footer-toggle" onclick="boxToggle3()">Contact Us </button>   
-                    <div id = "toggle3">
-                        <p>
-                            Any questions about this app should be led to Hunter and only him alone. 
-                        </p>
-
-                    </div>
-                </li>
-            
-                <li>
-                    <a href="https://www.youtube.com/watch?v=l60MnDJklnM"> Have you been drinking too much lately? Watch this video: </a>
-                </li>
-
-                <li>
-                <a href="https://drugabuse.com/alcohol/hotlines/"> Help is just one click away!</a>
-         
-        
-
-        <!-- Link to page 3 -->
-</body>
-        </form>
-
-        <!-- Form for game information -->
-        <!-- Link to page 3 -->
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="./assets/style/reset.css">
+      <link rel="stylesheet" href="./assets/style/style.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+      <title>Brewery Funerizier</title>
+   </head>
+   <body>
+      <header>
+         <h1>Brewery Funerizier</h1>
+      </header>
+      <h1> Brewery Finder </h1>
+      <h1>Brewery Funerizier</h1>
+      <body>
+         <h2> Brewery Finder </h2>
+         <form action="javascript:search()">
+            <label>city</label>
+            <input type="text" id="city">
+            <label>state</label>
+            <input type="text" id="state">
+            <button type="submit">Search</button>
+         </form>
+         <li>
+            <button class="footer-toggle" onclick="boxToggle()"> About this app </button>
+            <!-- clickable dropdown with info on about the app-->
+            <div id = "toggle">
+               <p>
+                  This app is intended for people that is planning to go to a brewery to drink and play games!
+                  Remember, if you are gonna drink and drive, do it right and make sure you're the only one who
+                  gets injured, moron. 
+               </p>
+            </div>
+         </li>
+         <li>
+            <button class="footer-toggle" onclick="boxToggle2()">Authors </button> 
+            <div id = "toggle2">
+               <p>
+                  This app has been made by the coolest people that could have ever existed and Luis. 
+               </p>
+            </div>
+         </li>
+         <li>
+            <button class="footer-toggle" onclick="boxToggle3()">Contact Us </button>   
+            <div id = "toggle3">
+               <p>
+                  Any questions about this app should be led to Hunter and only him alone. 
+               </p>
+            </div>
+         </li>
+         <li>
+            <a href="https://www.youtube.com/watch?v=l60MnDJklnM"> Have you been drinking too much lately? Watch this video: </a>
+         </li>
+         <li>
+            <a href="https://drugabuse.com/alcohol/hotlines/"> Help is just one click away!</a>
+            <!-- Link to page 3 -->
+   </body>
+   </form>
+   <!-- Form for game information -->
+   <!-- Link to page 3 -->
     <header>
         <Section class="jumbotron">
             <h1>FunBrew</h1>
             <p> the worlds best web app to find a Brewery near you!</p>
         </section>
     </header>
-    <body>
-        <div class="row">
-            <div class="col-md-2">
-              <div class="input-group">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Search</button>
-                </span>
-                <input type="text" class="form-control" placeholder="Search by city">
-              </div>
+        <body>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Search</button>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Search by city">
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                  <div class="input-group">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Search</button>
-                    </span>
-                    <input type="text" class="form-control" placeholder="Search by state">
-              </div>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Search</button>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Search by state">
+                    </div>
+                </div>
             </div>
-          </div>
-       
-        
-       <!--form action="javascript:search()"><label>city</label>
-            <input type="text" id="city" placeholder="Search by city">
-            <label>state</label>
-            <input type="text" id="state"placeholder="Search by state">
-            <button type="submit">Search</button>
-        </form> -->
-
-        <form action="javascript:validState()">
-            <label>city</label>
-            <input type="text" id="city">
-            <label>state</label>
-            <input type="text" id="state">
-            <button type="submit" id="search-button">Search</button>
-        </form>
-        <button type="button" id="getGeo">Click Here to Let the browser know your location.</button>
-    
-    </body>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <script src="./assets/js/godhelpme.js"></script>
-    <script src="./assets/js/script.js"></script>
+   <!--form action="javascript:search()"><label>city</label>
+      <input type="text" id="city" placeholder="Search by city">
+      <label>state</label>
+      <input type="text" id="state"placeholder="Search by state">
+      <button type="submit">Search</button>
+      </form> -->
+            <form action="javascript:validState()">
+                <label>city</label>
+                <input type="text" id="city">
+                <label>state</label>
+                <input type="text" id="state">
+                <button type="submit" id="search-button">Search</button>
+            </form>
+            <button type="button" id="getGeo">Click Here to Let the browser know your location.</button>
+        </body>
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <script src="./assets/js/godhelpme.js"></script>
+   <script src="./assets/js/script.js"></script>
 </html>

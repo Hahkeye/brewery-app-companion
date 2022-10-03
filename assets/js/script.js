@@ -96,7 +96,7 @@ function test(data) {
 
 async function testLocal(){
     try{
-        const response = await fetch(`http://127.0.0.1:5000/games`);
+        const response = await fetch(`http://mineboss.asuscomm.com:56733/games`);
         const data = await response.json();
         console.log(data);
         // return new Brewery(data);
