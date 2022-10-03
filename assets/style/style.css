@@ -1,62 +1,130 @@
+/* Global styling */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
 
-/* 
-  body {
-    color: #db1616;
-    font-family: Helvetica, Arial, sans-serif;
-    background-image: url("D:\bootcamp\group-projects\group-project-1\brewery-app-companion\assets\images\beer.jpg");
-    background-size:cover;
-    background-repeat: no-repeat;
-    
-  } */
 
+/* Body styling */
+body {    
+    background-image: url(https://images.pexels.com/photos/1022692/pexels-photo-1022692.jpeg?cs=srgb&dl=pexels-frans-van-heerden-1022692.jpg&fm=jpg);
+    background-size: cover;    
+}
+
+
+/* Header styling */
 header {
-    padding: 60px 40px;
-    background-color: #e41f1f;
-    display:flex;
+    padding: 60px 40px;    
+    display: flex;
     background-image: url("../images/beer.jpg");
     background-size:cover;
     width: 100%;
     height: 100%;
     justify-content:center;
-    flex-wrap: wrap;
-   
-  }
+    flex-wrap: wrap;   
+}
 
-  header.h1 {
+h1 {
     font-weight: bold;
-    font-size: 45px;
+    font-size: 2rem;
     align-items: center;
     margin:auto;
+}
 
-  }
+#tagline {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
 
-  header.nav {
-    margin: 20px 5px;
-  }
+.jumbotron {    
+    background-color: white;
+    opacity: 0.7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;    
+}
 
-header.nav.ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  }
-
-header nav ul li a {
-    margin: 0 30px;
-    font-weight: lighter;
-    font-size: 1.3vw;
-    text-decoration: none;
-    border-bottom: 2px solid;
+nav ul li a {
+    /* How to display inline? */
+    margin: 0px 30px;    
+    font-size: 1rem;
+    text-decoration: none;   
     padding-bottom: 2px;
-  }
+}
 
-  #facts div {
+/* #facts {
     display: none;
-    }
+} */
   
+
+/* Page 1 and 2 search bar styling */
+.search-bar-1 {    
+    background-color: white;
+    opacity: 0.8;
+    padding: 20px 20px; 
+    margin-left: 25%; 
+    margin-top: 50px;  
+    text-align: center;
+    font-weight: bold;    
+}
+
+
+/* Page 1 main content styling */
+.main-content-1 {
+    background-color: white;
+    opacity: 0.8;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#about-app {
+    padding: 20px 20px;
+    margin: 50px;
+    font-size: 1.25rem;
+}
+
+#authors {
+    padding: 20px 20px;
+    margin: 50px; /* Why isn't this styling correctly? */
+}
+
+
+/* Page 2 main content styling */
+#brewery-search-results {
+    background-color: white;
+    opacity: 0.8;
+    text-align: center;
+    width: 75%;
+    padding: 20px 20px;
+    margin-top: 25px;
+}
+
+.heading-2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.heading-3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.search-bar-2 {
+    background-color: white;
+    opacity: 0.8;
+    padding: 20px 20px; 
+    margin-left: 38%; 
+    margin-top: 20px;  
+    text-align: center;
+    font-weight: bold;   
+}
+
+.search-bar-3 {
+    background-color: white;
+    opacity: 0.8;
+    padding: 20px 20px; 
+    margin-left: 38%; 
+    margin-top: 20px;  
+    text-align: center;
+    font-weight: bold;  
+}
