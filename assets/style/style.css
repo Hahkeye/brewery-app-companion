@@ -1,18 +1,9 @@
+/* Global styling */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-/* 
-  body {
-    color: #db1616;
-    font-family: Helvetica, Arial, sans-serif;
-    background-image: url("D:\bootcamp\group-projects\group-project-1\brewery-app-companion\assets\images\beer.jpg");
-    background-size:cover;
-    background-repeat: no-repeat;
-    
-} */
 
 
 /* Body styling */
@@ -25,7 +16,7 @@ body {
 /* Header styling */
 header {
     padding: 60px 40px;    
-    display:flex;
+    display: flex;
     background-image: url("../images/beer.jpg");
     background-size:cover;
     width: 100%;
@@ -41,7 +32,7 @@ h1 {
     margin:auto;
 }
 
-p {
+#tagline {
     font-weight: bold;
     font-size: 1.25rem;
 }
@@ -54,7 +45,7 @@ p {
 }
 
 
-/* Page 1 search bar styling */
+/* Page 1 and 2 search bar styling */
 .search-bar-1 {    
     background-color: white;
     opacity: 0.7;
@@ -69,18 +60,17 @@ p {
 /* Page 1 main content styling */
 
 
-/* Page 2 search bar styling */
-.column1 {      
+/* Page 2 main content styling */
+#brewery-search-results {
     background-color: white;
-    opacity: 0.7;    
+    opacity: 0.7;
+    text-align: center;
+    width: 75%;
+    padding: 20px 20px;
+    margin-top: 25px;
 }
 
-h2 {
-    font-size: 1.25rem;
+.heading-2 {
+    font-size: 1.5rem;
+    font-weight: bold;
 }
-
-#search-area {       
-    border: 2px solid black;
-    background: white;
-}
-
