@@ -26,8 +26,8 @@ class Brewery{
         tempBody.attr('class','card-body');
         tempBody.append($('<h3>').text("Name: "+this.name));
         tempBody.append($('<p>').text("City: "+this.city));
-        tempBody.append($('<p>').text("Phone Number: "+this.phone));
-        tempBody.append($('<p>').text("Address: "+this.address));
+        tempBody.append($('<p>').text("PhoneNumber: "+this.phone));
+        tempBody.append($('<p>').text("Addres: "+this.address));
         tempBody.append($('<p>').text("Website: "+this.url));
         tempCard.on("click",function(){
             console.log("memes")
@@ -48,10 +48,10 @@ class Game{
         let tempInner = $('<div>').attr("class","innercardflip");
         let tempFront = $('<div>').attr("class","cardflip-front");
         tempFront.append($('<h1>').text(this.name));
-        tempFront.append($('<img>').attr("src",`http://mineboss.asuscomm.com:56733/images/?name=${this.img}`).attr("alt",`Picture of ${this.img.split("."[0])}`).attr("width","200px").attr("height","200px"));
+        tempFront.append($('<img>').attr("src",`http://mineboss.asuscomm.com:56733/images/?name=${this.img}`).attr("alt",`Picture of ${this.img.split("."[0])}`).attr("width","350px").attr("height","200px"));
         let tempBack = $('<div>').attr("class","cardflip-back");
         tempBack.append($('<h3>').text("Watch this to learn how to play!"));
-        tempBack.append($('<iframe>').attr("id","ytplayer").attr("type","text/html").attr("width","200px").attr("height","125px").attr("src",`${this.howtTo}`));
+        tempBack.append($('<iframe>').attr("id","ytplayer").attr("type","text/html").attr("width","600px").attr("height","200px").attr("src",`${this.howtTo}`));
         tempInner.append(tempFront);
         tempInner.append(tempBack)
         tempCard.append(tempInner);
@@ -220,7 +220,7 @@ function populateBrews(){
     }
 }
 
-$('#health-facts').on('click',function(event){
+$('#facts').on('click',function(event){
     if($(event.target).attr("class")== "fold"){
         if($(event.target).next('div').css("display")  == "block"){
             $(event.target).next('div').css("display","none");
