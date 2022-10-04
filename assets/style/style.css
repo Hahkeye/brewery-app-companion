@@ -21,14 +21,14 @@ header {
     background-size:cover;
     width: 100%;
     height: 100%;
-    justify-content:center;
+    justify-content: center;
     flex-wrap: wrap;   
 }
 
 h1 {
     font-weight: bold;
     font-size: 2rem;
-    align-items: center;
+    text-align: center;
     margin:auto;
 }
 
@@ -50,7 +50,7 @@ nav ul li {
     text-decoration: none;   
     padding-bottom: 2px;
     display: inline;
-    align-items: center;
+    justify-content: center;
 }
 
 .heading-2 {
@@ -94,20 +94,24 @@ nav ul li {
 
 #fun-facts {
     padding: 20px 20px;
-    margin: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     font-size: 1.25rem;
 }
 
 #health-facts {
     padding: 20px 20px;
-    margin: 50px;
-    font-size: 1.25rem;
-    
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 1.25rem;    
 }
 
 .fold {
-    color: #f28e1c; 
-    
+    color: #f28e1c;     
 }
 
 .landing-page-facts {
@@ -124,11 +128,6 @@ footer {
     padding: 10px 10px;
     margin: 50px;    
 }
-
-/* .column {
-    /* float: left; */
-    /* width: 33.33%;
-} */
 
 .left, .right {   
    width: 35%;
