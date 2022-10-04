@@ -1,30 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./assets/style/reset.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <title>Brewery Funerizier</title>
-    </head>
-    <header>Brewery Fun Games</header>
-    <body>
-        <form action="javascript:postalCodeTest()">
-            <label>city</label>
-            <input type="text" id="city">
-            <label>state</label>
-            <input type="text" id="state">
-            <button type="submit">Search</button>
-        </form>
-        <button type="button" id="getGeo">Click Here to Let the browser know your location.</button>
-    
-    </body>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <script src="./assets/js/script.js"></script>
-    <script>
-    </script>
-    
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style/reset.css">
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>FunBrew</title>
+  </head>
+  <body>
+    <!--Header-->
+    <header>
+      <div class="jumbotron">
+        <h1>FunBrew</h1>
+        <p id="tagline">The world's leading app for breweries and drinking games!</p>
+        <nav>
+          <ul>
+            <li>
+              <a href="#about-app">About this app</a>
+            </li>
+            <li>
+              <a href="#authors">Authors</a>
+            </li>
+            <li>
+              <a href="#contact-us">Contact us</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!--Search bar-->
+    <div class="search-bar-1 w-50">
+      <form action="javascript:validState()">
+        <div>
+          <h2 class="heading-2">Search for a brewery near you!</h2>
+          <label>City: </label>
+          <input type="text" id="city">
+          <label>State: </label>
+          <input type="text" id="state">
+          <button type="submit" id="search-button">Search</button>
+        </div>
+      </form>
+      <button type="button" id="getGeo">Click here to let the browser know your location.</button>
+    </div>
+    <!--About this app-->
+    <div class="main-content-1" id="about-app">
+      <h3 class="heading-3">About this app</h3>
+      <p> FunBrew is an app that you can use to search for breweries around the U.S. You can allow the app to use your location to find breweries nearby or you can input a city and state to find breweries in a certain area. Once you have submitted your search for breweries, you will be redirected to a secondary page that lists the breweries for you. On our secondary page, you will have the option to check out our list of drinking games as well! You'll have access to each game's description and a how-to video, so you can have fun with your friends and loved ones while enjoying your brew! <br>Remember to enjoy your brews in moderation. <br>Drink responsibly! </p>
+    </div>
+    <!--Bulleted beer facts-->
+    <div class="main-content-1" id="fun-facts">
+      <h2 class="heading-2">Thirsty for some beer facts? Check out our content below!</h2>
+      <li class="landing-page-facts"> Beer falls into two categories: lager and ale. While the two are typically created using the same four base ingredients (yeast, malted barley, hops and water), they differ in how they are made. Thanks to this, there are hundreds of beer styles! </li>
+      <li class="landing-page-facts"> Ales are fermented with top-fermentin ale yeast at warmer temperatures. The type of yeast used to make ales, along with the warmer fermentation temperature, generally produces a fruiter, spicer flavor. Some of the different ale styles are: American Pale Ale (APA), New England India Pale Ale (NEIPA), West Coast India Pale Ale (WCIPA), Imperial or Double India Pale Ale, American Wheat, Hefeweizen, Brown Ale and more! <a href="https://www.hy-vee.com/recipes-ideas/advice-how-tos/food-love/types-of-ale-beers">Click here to learn more</a>
+      </li>
+      <li class="landing-page-facts"> Lagers are by far the most popular beers in the world. Lagers range in color from pale straw to very dark. They are usually fermented with bottom-fermenting lager yeast at lower temperatures, which separates them from ales. Some of the different lagers styles are: American Lager, Vienna Style Lager, Pilsner, Imperial Pilsner, California Common, Bock, Doppelbock, Maibock, Marzen/Oktoberfest and more! <a href="https://www.hy-vee.com/recipes-ideas/advice-how-tos/food-love/types-of-lagers">Click here to learn more</a>
+      </li>
+      <li class="landing-page-facts"> The world's most expensive beer costs $503,300!!. That's right, the name of the beer is Allsopp's Artic Ale. This beer was brewed in 1875 for an Antarctic expedition, which makes it a collector's item. Although is not for consumption anymore due to the long steeping period, over 50 different bidders from eBay fought for it. </li>
+      <li class="landing-page-facts"> The world's strongest beer is called 'Snake Venom' and it's made by Brewmeister with an alcohol ABV of 67.5%. It is brewed in Moray from smoked, peated malt using two varieties of yeast, one beer and one Champagne. Like other ultra high strenght beers it is frozen several times after the fermentation process and the ice crystals removed. </li>
+      <li class="landing-page-facts"> China is the largest beer consumer as a whole with an average annual consumption of 46 billion liters, which is twice the amount of the U.S. On the other hand, the Czech Republic leads the world in terms of beer consumption per person. </li>
+      <li class="landing-page-facts"> The economy of the United States benefits from beer sales with proffits over 100 billion dollars from beer alone! </li>
+      <li class="landing-page-facts"> The United states is home to the most popular beer brands. More than 7000 breweries manufacture beers in the United States. The top 3 leading companies in the country are Anheuser-Busch from St. Louis, Missouri, MillerCoors from Chicago, Illinois, and Pabst Brewing Company from Los Angeles, California. </li>
+      <li class="landing-page-facts"> Beer Pong was invented in the '50s. Although it is still disputed where beer pong exactly originated from. </li>
+      <li class="landing-page-facts"> The moderate consumption of beer has been shown to potentially prevent several diseases. Now, keep in mind, that for all beer's medicinal effects, it's best to consult your doctor if you have any underlying conditions. Click on each one down below to learn more! </li>
+    </div>
+    <!--Collapsing health facts-->
+    <!--How to have these collapsed on page load?-->
+    <div class="main-content-1" id="health-facts">
+      <h2 class="heading-2">Still need convincing? Find out the rad health benefits of beer here:</h2>
+      <div>
+        <a class="fold">Fights cancer</a>
+        <div>
+          <p> Drinking stout could help fight cancer. What makes stout unique from other beers is its overwhelming, roasted flavor. The stout's flavor comes from the roasted barley from that has not been malted. It also stands out from other beers as the only drink associated with fighting cancer. According to a study, drinking stout with your meals helps fight free radicals, which occurs when the body starts to metabolize the food. <a href="https://www.india.com/health/can-beer-help-you-fight-cancer-1154589/"> Click here to learn more</a>
+          </p>
+        </div>
+      </div>
+      <div>
+        <a class="fold">Prevents kidney stones</a>
+        <div>
+          <p> The moderate consumption of beer has shown to potentially prevent kidney stones. <a href="https://www.urologyspecialistsnc.com/wine-prevent-kidney-stones/#:~:text=Beer%20proved%20to%20reduce%20the,useful%20in%20preventing%20kidney%20stones!">This </a>study revealed that drinking beer moderately reduces the risk of developing kidney stones by as much as 41%. </p>
+        </div>
+      </div>
+      <div>
+        <a class="fold">Reduces risk of coronary heart diseases</a>
+        <div>
+          <p> In the right amount and circumstances, beer is good for the heart and blood vessels due to its alcohol content. For the average person, an intake of less than 30 g of alcohol per day lowers the risk of cardiovascular disease by 25% compared to non-drinkers. <a href="https://beerandhealth.eu/beer-and-health/beer-and-cardiovascular-disease/?age-verified=a19a646cfd">Click here to learn more</a>
+          </p>
+        </div>
+      </div>
+      <div>
+        <a class="fold">Reduces risk of ischemic stroke</a>
+        <div>
+          <p> An ischemic stroke starts when an artery in the brain gets blocked. Small amounts of alcohol can be beneficial for patients who had a stroke caused by a clot blocking a blood vessel. <a href="https://beerandhealth.eu/beer-and-health/beer-and-cardiovascular-disease/?age-verified=a19a646cfd">Click here to learn more</a>
+          </p>
+        </div>
+      </div>
+      <div>
+        <a class="fold">Reduces risk of type 2 diabetes</a>
+        <div>
+          <p> Beer may be made of sugar, but drinking small amounts lowers a person's risk for type 2 diabetes by 25%. Researchers observed that alcohol increased a person's adiponectin levels. Adiponectin is a hormone that improves insulin sensitivity, protecting the body against developing Type 2 diabetes. <a href="https://www.hsph.harvard.edu/news/features/moderate-alcohol-intake-may-decrease-mens-risk-for-type-2-diabetes/">Click here to learn more</a>
+          </p>
+        </div>
+      </div>
+      <div>
+        <a class="fold">Eradicates harmful cholesterol</a>
+        <div>
+          <p> Moderate alcohol consumption increases HDL cholesterol in the blood. In detail, HDL cholesterol acts as the scavenger in the bloodstream, eradicating harmful cholesterol. Hence, high HDL levels provide many benefits to the average human's body. <a href="https://www.westmedfamilyhealthcare.com/blog/this-is-how-drinking-alcohol-affects-your-cholesterol">Click here to learn more</a>
+          </p>
+        </div>
+      </div>
+      <div>
+        <a class="fold">Protects body against radiation</a>
+        <div>
+          <p> According to a study in Japan, beer drinkers reduced their risk of chromosomal damage from radiation compared to non-beer drinkers <a href="https://pubmed.ncbi.nlm.nih.gov/12518984/"> Click here to learn more</a>
+          </p>
+        </div>
+      </div>
+      <div>
+        <a class="fold">Reduces the risk of ulcers</a>
+        <div>
+          <p> Your hangover might convince you otherwise, but the right amount of beer can also protect your stomach from ulcers. A small intake of 75 grams per week of beer reduces the risk of ulcers caused by a bacteria known as H. Pylori. <a href="https://www.science.org/content/article/drink-away-those-ulcers#:~:text=In%20the%20May%20issue%20of,ulcers%20and%20certain%20stomach%20cancers.">Click here to learn more</a>
+          </p>
+        </div>
+      </div>
+      <div>
+        <a class="fold">Protects brain function at older age</a>
+        <div>
+          <p> According to research, men in their late 70s and 80s that have had one alcoholic beverage per day tend to have a clearer thinking ability compared to non-drinkers. <a href="https://www.sciencedaily.com/releases/2020/06/200630125135.htm"> Click here to learn more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--Footer-->
+    <footer>
+      <div id="authors">
+        <h3 class="heading-3">Authors</h3>
+        <ul>
+          <li>Hunter Adcock</li>
+          <li>Kayla Justice</li>
+          <li>Ryan Gustafson</li>
+          <li>Ricky Moua</li>
+          <li>Luis Tarantini</li>
+        </ul>
+      </div>
+      <div id="contact-us">
+        <h3 class="heading-3">Contact us</h3>
+        <p>If you have any questions feel free to contact us either through email at: <a href="mailto:funBrew@gmail.com"> funBrew@gmail.com</a>
+        </p>
+      </div>
+      <div id="seek-help">
+        <h3 class="heading-3">Need help managing your alcohol intake? Check out these resources:</h3>
+        <ul>
+          <li>
+            <a href="https://www.youtube.com/watch?v=l60MnDJklnM">Have you been drinking too much lately? Watchthis video:</a>
+          </li>
+          <li>
+            <a href="https://alcoholtreatment.niaaa.nih.gov//"> Help is just one click away!</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="./assets/js/script.js"></script>
 </html>
