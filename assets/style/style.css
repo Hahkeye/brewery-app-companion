@@ -90,27 +90,27 @@ nav ul li {
 #about-app {
     padding: 20px 20px;
     margin: 50px;
-    font-size: 1.25rem;
-    border-radius: 25%;
+    font-size: 1.25rem;    
 }
 
 #fun-facts {
     padding: 20px 20px;
-    margin-left: 200px;
+    margin: 50px;
+    /* margin-left: 200px;
     margin-right: 200px;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 50px; */
     font-size: 1.25rem;
 }
 
 #health-facts {
     padding: 20px 20px;
-    margin-left: 200px;
+    margin: 50px;
+    /* margin-left: 200px;
     margin-right: 200px;
     margin-top: 50px;
-    margin-bottom: 50px;
-    font-size: 1.25rem;
-    border-radius: 25%;      
+    margin-bottom: 50px; */
+    font-size: 1.25rem;         
 }
 
 #health-facts div div {

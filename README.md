@@ -56,9 +56,9 @@ THEN I am presented with a selection of drinking games with instructional videos
 
 
 
-## Screenshot
+## Screenshots
 
-Below is the draft version of my weather forecast project.
+Below are the screenshots for our three pages.
 
 ![](screenshotp1.png)
 ![](screenshotp2.png)
