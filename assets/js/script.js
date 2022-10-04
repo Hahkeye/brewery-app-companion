@@ -12,14 +12,17 @@ var brewerys=[];
 var games=[];
 
 class Brewery{
-    constructor(blob){
+    constructor(blob,w){
         this.name = blob.name;
         this.phone = blob.phone;
         this.url = blob.website_url;
         this.city = blob.city;
         this.address = (blob.street + " " + blob.city + " " + blob.state + " " + blob.postal_code);
+        this.coords=[blob.latitude,blob.longitude];
+        this.weather=w;
     }
     toHtml(){
+        // const tW = getWeatherByZipCode(this.coords);
         let tempCard = $('<div>');
         tempCard.attr('class','card');
         let tempBody = $('<div>');
@@ -29,11 +32,25 @@ class Brewery{
         tempBody.append($('<p>').text("PhoneNumber: "+this.phone));
         tempBody.append($('<p>').text("Addres: "+this.address));
         tempBody.append($('<p>').text("Website: "+this.url));
-        tempCard.on("click",function(){
-            console.log("memes")
-            window.location.href="./page3.html?games=yes";
-        });
-        return tempCard.append(tempBody);
+        let weatherDiv = $('<div>');
+        //this.weatherDailyForecasts[0].Temperature.Maximum.Value
+        //this.weatherDailyForecasts[0].Temperature.Minimum.Value
+        //this.weatherDailyForecasts[0].Temperature.Maximum.Unit
+        //this.weatherDailyForecasts[0].Day.IconPhrase
+        //this.weatherHeadline.Text
+        console.log(this.weather);
+        weatherDiv.append($('<h3>').text("Forecast"));
+        weatherDiv.append($('<p>').text(this.weather.Headline.Text));
+        weatherDiv.append($('<p>').text(this.weather.DailyForecasts[0].Day.IconPhrase));
+        weatherDiv.append($('<p>').text(`Maxium: ${this.weather.DailyForecasts[0].Temperature.Maximum.Value} ${this.weather.DailyForecasts[0].Temperature.Maximum.Unit}°`));
+        weatherDiv.append($('<p>').text(`Minimum: ${this.weather.DailyForecasts[0].Temperature.Minimum.Value} ${this.weather.DailyForecasts[0].Temperature.Maximum.Unit}°`));
+        tempCard.append(tempBody);
+        tempCard.append(weatherDiv);
+        // tempCard.on("click",function(){
+        //     console.log("memes")
+        //     window.location.href="./page3.html?games=yes";
+        // });
+        return tempCard;
     }
 }
 
@@ -73,19 +90,19 @@ $(function(){
 });
 
 // Logging geolocation information
-function showLocation (position) {
+function showLocation(position) {
     coords = position.coords;
     window.location.href = `./page2.html?latlon=${position.coords.latitude},${position.coords.longitude}`;
 
 }
 
 // If user blocks geolocation, prompt them to input city and state
-function promptLocationInput () {
+function promptLocationInput() {
     alert("Please enter a city and state.");
 }
    
 // If geolocation is accepted, translate lat/long into zip code
-async function getZipFromLatLong (){
+async function getZipFromLatLong(){
     try{
         const response = await fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`);
         const data = await response.json();
@@ -96,12 +113,13 @@ async function getZipFromLatLong (){
     }
 }
 
-async function getBreweriesByCoordCode(zipCode,numberOfBreweries=5){
+async function getBreweriesByCoordCode(latLon,numberOfBreweries=5){
     try{
-        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_dist=${zipCode[0]},${zipCode[1]}&per_page=${numberOfBreweries}`);
+        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_dist=${latLon[0]},${latLon[1]}&per_page=${numberOfBreweries}`);
         const data = await response.json();
+        const weather =  await getWeatherByZipCode(latLon);
         for(let b of data){
-            let tempB = new Brewery(b);
+            let tempB = new Brewery(b,weather);
             brewerys.push(tempB);
         }
         populateBrews()
@@ -151,7 +169,7 @@ async function getWeatherByZipCode(zipCode){
     
     // First fetch to capture zipcode "Key"
     try{    
-        const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`);
+        const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=${zipCode[0]},${zipCode[1]}`);
         const data = await response.json();
         // console.log(data);
         key = data.Key;
@@ -164,6 +182,7 @@ async function getWeatherByZipCode(zipCode){
     try{
         const response = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`);
         const data = await response.json();
+        // console.log("weather ", data);
         return data;
     }catch(e){
         console.log("Error in fetching the weather ", e);
@@ -220,7 +239,7 @@ function populateBrews(){
     }
 }
 
-$('#facts').on('click',function(event){
+$('#health-facts').on('click',function(event){
     if($(event.target).attr("class")== "fold"){
         if($(event.target).next('div').css("display")  == "block"){
             $(event.target).next('div').css("display","none");
@@ -231,7 +250,7 @@ $('#facts').on('click',function(event){
   });
   
 
-//Listeners
+//Listeners / onloads
 
 // Geolocation listener
 $('#getGeo').on('click',function(){
