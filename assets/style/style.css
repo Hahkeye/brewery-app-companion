@@ -21,14 +21,14 @@ header {
     background-size:cover;
     width: 100%;
     height: 100%;
-    justify-content:center;
+    justify-content: center;
     flex-wrap: wrap;   
 }
 
 h1 {
     font-weight: bold;
     font-size: 2rem;
-    align-items: center;
+    text-align: center;
     margin:auto;
 }
 
@@ -41,7 +41,8 @@ h1 {
     background-color: white;
     opacity: 0.8;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;    
+    text-align: center; 
+    border-radius: 25%;   
 }
 
 nav ul li a {
@@ -61,10 +62,26 @@ nav ul li a {
     text-decoration: none;   
     padding-bottom: 2px; */
 
+nav ul li {
+    margin: 0px 10px;    
+    font-size: 1rem;
+    text-decoration: none;   
+    padding-bottom: 2px;
+    display: inline;
+    justify-content: center;
+}
 
-/* #facts {
-    display: none;
-} */
+.heading-2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f28e1c;
+}
+
+.heading-3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f28e1c;
+}
   
 
 /* Page 1 and 2 search bar styling */
@@ -75,7 +92,7 @@ nav ul li a {
     margin-left: 25%; 
     margin-top: 50px;  
     text-align: center;
-    font-weight: bold;    
+    font-weight: bold;       
 }
 
 
@@ -92,33 +109,30 @@ nav ul li a {
     margin-top: 50px;
 }
 
-footer {
-    background-color: white;
-    opacity: 0.8;
-    text-align: center;
-    padding: 20px 20px;
-    margin: 50px;
-}
-
 #about-app {
     padding: 20px 20px;
     margin: 50px;
-    font-size: 1.25rem;
+    font-size: 1.25rem;    
 }
 
 #fun-facts {
     padding: 20px 20px;
     margin: 50px;
-    margin-left: 33%;
-    margin-right: 33%;
     font-size: 1.25rem;
 }
 
 #health-facts {
     padding: 20px 20px;
     margin: 50px;
- 
-    font-size: 1.25rem;
+    font-size: 1.25rem;         
+}
+
+#health-facts div div {
+    display: none;
+}
+
+.fold {
+    color: #f28e1c;        
 }
 
 .landing-page-facts {
@@ -126,10 +140,45 @@ footer {
     padding: 10px 10px;
 }
 
-#authors {
-    padding: 20px 20px;
-    /* margin-top: 25px; Why isn't this styling correctly? */
-    /* want these to display inline */
+
+/* Footer styling */
+footer {
+    background-color: white;
+    opacity: 0.8;
+    text-align: center;
+    padding: 10px 10px;
+    margin: 50px;    
+}
+
+.left, .right {   
+   width: 35%;
+}
+
+.middle {
+    width: 30%
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#authors li {
+    padding-top: 10px; 
+    margin-left: 120px;
+    margin-right: 120px; 
+    text-align: center;        
+}
+
+#seek-help {
+    margin: 30px 50px;
+    text-align: center;
+}
+
+#contact-us {
+    margin: 30px 50px;
+    text-align: center;
 }
 
 
@@ -143,16 +192,6 @@ footer {
     margin-top: 25px;
 }
 
-.heading-2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.heading-3 {
-    font-size: 1.25rem;
-    font-weight: bold;
-}
-
 .search-bar-2 {
     background-color: white;
     opacity: 0.8;
@@ -163,6 +202,8 @@ footer {
     font-weight: bold;   
 }
 
+
+/* Page 3 styling */
 .search-bar-3 {
     background-color: white;
     opacity: 0.8;
@@ -222,3 +263,4 @@ footer {
     
     transform: rotateY(180deg);
   }
+
