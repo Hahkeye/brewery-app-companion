@@ -75,6 +75,7 @@ $(function(){
 // Logging geolocation information
 function showLocation (position) {
     coords = position.coords;
+    window.location.href = `./page2.html?latlon=${position.coords.latitude},${position.coords.longitude}`;
 
 }
 
@@ -95,9 +96,9 @@ async function getZipFromLatLong (){
     }
 }
 
-async function getBreweriesByZipCode(zipCode,numberOfBreweries=5){
+async function getBreweriesByCoordCode(zipCode,numberOfBreweries=5){
     try{
-        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_postal=${zipCode}&per_page=${numberOfBreweries}`);
+        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_dist=${zipCode[0]},${zipCode[1]}&per_page=${numberOfBreweries}`);
         const data = await response.json();
         for(let b of data){
             let tempB = new Brewery(b);
@@ -111,7 +112,7 @@ async function getBreweriesByZipCode(zipCode,numberOfBreweries=5){
     // console.log(data);     // Is this the correct location to call this function?
 }
 async function validCity(state){
-    let city=$('#city').val();
+    let city=$('#city').val().toLowerCase();
     
     try{
         const response = await fetch(`https://api.zippopotam.us/US/${state}/${city}`)
@@ -119,9 +120,11 @@ async function validCity(state){
             alert("Please enter a valid city.");
         }else{
             const data = await response.json();
+            console.log(data.places[0].latitude);
+            console.log(data.places[0].longitude);
             console.log("2,"+data.places[0]["post code"]);
             console.log(tempForecast);
-            window.location.href = `./page2.html?zipcode=${data.places[0]["post code"]}`;
+            window.location.href = `./page2.html?latlon=${data.places[0].latitude},${data.places[0].longitude}`;
 
         }
     }catch(e){
@@ -130,9 +133,9 @@ async function validCity(state){
 }
 
 function validState(){
-    let state=$('#state').val();
+    let state=$('#state').val().toLowerCase();
     if(states[state]){
-        console.log("1,"+states[state]);
+        // console.log("1,"+states[state]);
         validCity(states[state]);
 
     }else{
@@ -150,9 +153,9 @@ async function getWeatherByZipCode(zipCode){
     try{    
         const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`);
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         key = data.Key;
-        console.log(key); 
+        // console.log(key); 
     }catch(e){
         console.log("Error in fetching zipcode key ", e);
     }
@@ -174,10 +177,10 @@ async function tempWeatherStorage(){
         try{
             const response = await fetch (`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`);
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             localStorage.setItem("location-id", JSON.stringify(data));
             key = data.Key;
-            console.log(key);
+            // console.log(key);
         }catch(e){
             console.log("Error in storing location information ", e);
         }      
@@ -185,7 +188,7 @@ async function tempWeatherStorage(){
         try{
             const response = await fetch (`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`);
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             localStorage.setItem("forecast", JSON.stringify(data));
         }catch(e){
             console.log("Error in storing forecast information ", e);
@@ -198,10 +201,10 @@ async function populateGames(){//grabs game list from api objectifys them.
     try{
         const response = await fetch(`http://mineboss.asuscomm.com:56733/games`);
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         for(let i of data){
             let x =new Game(i);
-            console.log(x.toHtml());
+            // console.log(x.toHtml());
             tempTarget.append(x.toHtml());
         }
         // return new Brewery(data);
@@ -212,11 +215,7 @@ async function populateGames(){//grabs game list from api objectifys them.
 
 function populateBrews(){
     let tempTarget = $('#brewery-search-results');
-    console.log(tempTarget);
-    console.log(brewerys);
-    console.log(brewerys.length);
     for(let b in brewerys){
-        console.log("ZZZZZZZZZZZ"+brewerys[b]);
         tempTarget.append(brewerys[b].toHtml());
     }
 }
@@ -240,11 +239,12 @@ $('#getGeo').on('click',function(){
 });
 
 $(function(){
-    console.log(window.location.search);
+    // console.log(window.location.search);
     let urlP = new URLSearchParams(window.location.search);
-    if(urlP.get("zipcode")){
+    if(urlP.get("latlon")){
         let urlP = new URLSearchParams(window.location.search);
-        getBreweriesByZipCode(urlP.get("zipcode"));
+        // console.log(urlP.get("latlon"));
+        getBreweriesByCoordCode([urlP.get("latlon").split(',')[0],urlP.get("latlon").split(',')[1]]);
     }
     if(urlP.get("games")){
         populateGames();
