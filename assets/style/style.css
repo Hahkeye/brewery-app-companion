@@ -77,7 +77,21 @@ nav ul li a {
     margin-top: 50px;
 }
 
+footer {
+    background-color: white;
+    opacity: 0.8;
+    text-align: center;
+    padding: 20px 20px;
+    margin: 50px;
+}
+
 #about-app {
+    padding: 20px 20px;
+    margin: 50px;
+    font-size: 1.25rem;
+}
+
+#facts {
     padding: 20px 20px;
     margin: 50px;
     font-size: 1.25rem;
@@ -85,7 +99,7 @@ nav ul li a {
 
 #authors {
     padding: 20px 20px;
-    margin: 50px; /* Why isn't this styling correctly? */
+    /* margin-top: 25px; Why isn't this styling correctly? */
 }
 
 
