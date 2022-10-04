@@ -44,17 +44,26 @@ h1 {
     text-align: center;    
 }
 
-nav ul li a {
-    /* How to display inline? */
-    margin: 0px 30px;    
+nav ul li {
+    margin: 0px 10px;    
     font-size: 1rem;
     text-decoration: none;   
     padding-bottom: 2px;
+    display: inline;
+    align-items: center;
 }
 
-/* #facts {
-    display: none;
-} */
+.heading-2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f28e1c;
+}
+
+.heading-3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f28e1c;
+}
   
 
 /* Page 1 and 2 search bar styling */
@@ -77,14 +86,6 @@ nav ul li a {
     margin-top: 50px;
 }
 
-footer {
-    background-color: white;
-    opacity: 0.8;
-    text-align: center;
-    padding: 20px 20px;
-    margin: 50px;
-}
-
 #about-app {
     padding: 20px 20px;
     margin: 50px;
@@ -100,11 +101,13 @@ footer {
 #health-facts {
     padding: 20px 20px;
     margin: 50px;
-    font-size: 1.25rem;      
+    font-size: 1.25rem;
+    
 }
 
 .fold {
-    color: black;    
+    color: #f28e1c; 
+    
 }
 
 .landing-page-facts {
@@ -112,10 +115,50 @@ footer {
     padding: 10px 10px;
 }
 
-#authors {
-    padding: 20px 20px;
-    /* margin-top: 25px; Why isn't this styling correctly? */
-    /* want these to display inline */
+
+/* Footer styling */
+footer {
+    background-color: white;
+    opacity: 0.8;
+    text-align: center;
+    padding: 10px 10px;
+    margin: 50px;    
+}
+
+/* .column {
+    /* float: left; */
+    /* width: 33.33%;
+} */
+
+.left, .right {   
+   width: 35%;
+}
+
+.middle {
+    width: 30%
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#authors li {
+    padding-top: 10px; 
+    margin-left: 120px;
+    margin-right: 120px; 
+    text-align: center;        
+}
+
+#seek-help {
+    margin: 30px 50px;
+    text-align: center;
+}
+
+#contact-us {
+    margin: 30px 50px;
+    text-align: center;
 }
 
 
@@ -129,18 +172,6 @@ footer {
     margin-top: 25px;
 }
 
-.heading-2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #f28e1c;
-}
-
-.heading-3 {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #f28e1c;
-}
-
 .search-bar-2 {
     background-color: white;
     opacity: 0.8;
@@ -151,6 +182,8 @@ footer {
     font-weight: bold;   
 }
 
+
+/* Page 3 styling */
 .search-bar-3 {
     background-color: white;
     opacity: 0.8;

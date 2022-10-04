@@ -24,7 +24,7 @@ class Brewery{
         tempCard.attr('class','card');
         let tempBody = $('<div>');
         tempBody.attr('class','card-body');
-        tempBody.append($('<h3>').text("Name: "+this.name));
+        tempBody.append($('<h3>').text(this.name));
         tempBody.append($('<p>').text("City: "+this.city));
         tempBody.append($('<p>').text("Phone Number: "+this.phone));
         tempBody.append($('<p>').text("Address: "+this.address));
@@ -109,7 +109,8 @@ async function getBreweriesByCoordCode(zipCode,numberOfBreweries=5){
     }catch(e){
         console.log("Error in fetching breweries ", e);
     }    
-    // console.log(data);     // Is this the correct location to call this function?
+    // console.log(data);     
+    
 }
 async function validCity(state){
     let city=$('#city').val().toLowerCase();
