@@ -96,10 +96,11 @@ async function getZipFromLatLong (){
     }
 }
 
-async function getBreweriesByCoordCode(zipCode,numberOfBreweries=5){
+async function getBreweriesByCoordCode(zipCode,numberOfBreweries=8){
     try{
         const response = await fetch(`https://api.openbrewerydb.org/breweries?by_dist=${zipCode[0]},${zipCode[1]}&per_page=${numberOfBreweries}`);
         const data = await response.json();
+        console.log(data);
         for(let b of data){
             let tempB = new Brewery(b);
             brewerys.push(tempB);
@@ -220,7 +221,7 @@ function populateBrews(){
     }
 }
 
-$('#facts').on('click',function(event){
+$('#health-facts').on('click',function(event){
     if($(event.target).attr("class")== "fold"){
         if($(event.target).next('div').css("display")  == "block"){
             $(event.target).next('div').css("display","none");
