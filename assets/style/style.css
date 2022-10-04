@@ -107,11 +107,15 @@ nav ul li {
     margin-right: 200px;
     margin-top: 50px;
     margin-bottom: 50px;
-    font-size: 1.25rem;    
+    font-size: 1.25rem;      
+}
+
+#health-facts div div {
+    display: none;
 }
 
 .fold {
-    color: #f28e1c;     
+    color: #f28e1c;        
 }
 
 .landing-page-facts {

@@ -110,7 +110,7 @@ async function getBreweriesByCoordCode(zipCode,numberOfBreweries=5){
         console.log("Error in fetching breweries ", e);
     }    
     // console.log(data);     
-    
+
 }
 async function validCity(state){
     let city=$('#city').val().toLowerCase();
@@ -229,7 +229,7 @@ $('#health-facts').on('click',function(event){
             $(event.target).next('div').css("display","block");
         }
     }
-  });
+});
   
 
 //Listeners
@@ -259,4 +259,4 @@ $(document).ready(function() {
         $(this).toggleClass('hover');
     });
   
-  });
+});
