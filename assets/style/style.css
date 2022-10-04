@@ -91,10 +91,21 @@ footer {
     font-size: 1.25rem;
 }
 
-#facts {
+#fun-facts {
     padding: 20px 20px;
     margin: 50px;
     font-size: 1.25rem;
+}
+
+#health-facts {
+    padding: 20px 20px;
+    margin: 50px;
+    font-size: 1.25rem;
+}
+
+.landing-page-facts {
+    text-align: left;
+    padding: 20px 20px;
 }
 
 #authors {
