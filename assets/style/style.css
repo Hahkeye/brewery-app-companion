@@ -41,7 +41,8 @@ h1 {
     background-color: white;
     opacity: 0.8;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;    
+    text-align: center; 
+    border-radius: 25%;   
 }
 
 nav ul li {
@@ -74,7 +75,7 @@ nav ul li {
     margin-left: 25%; 
     margin-top: 50px;  
     text-align: center;
-    font-weight: bold;    
+    font-weight: bold;       
 }
 
 
@@ -90,6 +91,7 @@ nav ul li {
     padding: 20px 20px;
     margin: 50px;
     font-size: 1.25rem;
+    border-radius: 25%;
 }
 
 #fun-facts {
@@ -107,7 +109,8 @@ nav ul li {
     margin-right: 200px;
     margin-top: 50px;
     margin-bottom: 50px;
-    font-size: 1.25rem;      
+    font-size: 1.25rem;
+    border-radius: 25%;      
 }
 
 #health-facts div div {
@@ -235,4 +238,3 @@ footer {
     color: rgb(0, 42, 255);    
     transform: rotateY(180deg);
 }
-
