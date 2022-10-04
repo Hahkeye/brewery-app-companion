@@ -22,23 +22,16 @@ class Brewery{
         this.weather=w;
     }
     toHtml(){
-        // const tW = getWeatherByZipCode(this.coords);
         let tempCard = $('<div>');
         tempCard.attr('class','card');
         let tempBody = $('<div>');
         tempBody.attr('class','card-body');
-        tempBody.append($('<h3>').text(this.name));
+        tempBody.append($('<h3>').text("Name: "+this.name));
         tempBody.append($('<p>').text("City: "+this.city));
-        tempBody.append($('<p>').text("Phone Number: "+this.phone));
-        tempBody.append($('<p>').text("Address: "+this.address));
+        tempBody.append($('<p>').text("PhoneNumber: "+this.phone));
+        tempBody.append($('<p>').text("Addres: "+this.address));
         tempBody.append($('<p>').text("Website: "+this.url));
         let weatherDiv = $('<div>');
-        //this.weatherDailyForecasts[0].Temperature.Maximum.Value
-        //this.weatherDailyForecasts[0].Temperature.Minimum.Value
-        //this.weatherDailyForecasts[0].Temperature.Maximum.Unit
-        //this.weatherDailyForecasts[0].Day.IconPhrase
-        //this.weatherHeadline.Text
-        console.log(this.weather);
         weatherDiv.append($('<h3>').text("Forecast"));
         weatherDiv.append($('<p>').text(this.weather.Headline.Text));
         weatherDiv.append($('<p>').text(this.weather.DailyForecasts[0].Day.IconPhrase));
@@ -46,10 +39,6 @@ class Brewery{
         weatherDiv.append($('<p>').text(`Minimum: ${this.weather.DailyForecasts[0].Temperature.Minimum.Value} ${this.weather.DailyForecasts[0].Temperature.Maximum.Unit}°`));
         tempCard.append(tempBody);
         tempCard.append(weatherDiv);
-        // tempCard.on("click",function(){
-        //     console.log("memes")
-        //     window.location.href="./page3.html?games=yes";
-        // });
         return tempCard;
     }
 }
@@ -106,7 +95,7 @@ async function getZipFromLatLong(){
     try{
         const response = await fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`);
         const data = await response.json();
-        console.log(data.postalCodes[0].postalCode);
+        // console.log(data.postalCodes[0].postalCode);
         // return data.postalCodes[0].postalCode;
     }catch(e){
         console.log("Error in fetching zipcodes ", e);
@@ -127,8 +116,7 @@ async function getBreweriesByCoordCode(latLon,numberOfBreweries=5){
     }catch(e){
         console.log("Error in fetching breweries ", e);
     }    
-    // console.log(data);     
-    
+    // console.log(data);     // Is this the correct location to call this function?
 }
 async function validCity(state){
     let city=$('#city').val().toLowerCase();
@@ -139,10 +127,10 @@ async function validCity(state){
             alert("Please enter a valid city.");
         }else{
             const data = await response.json();
-            console.log(data.places[0].latitude);
-            console.log(data.places[0].longitude);
-            console.log("2,"+data.places[0]["post code"]);
-            console.log(tempForecast);
+            // console.log(data.places[0].latitude);
+            // console.log(data.places[0].longitude);
+            // console.log("2,"+data.places[0]["post code"]);
+            // console.log(tempForecast);
             window.location.href = `./page2.html?latlon=${data.places[0].latitude},${data.places[0].longitude}`;
 
         }
