@@ -17,6 +17,19 @@
             <div class="jumbotron">
                 <h1>FunBrew</h1>
                 <p id="tagline">The world's leading app for breweries and drinking games!</p>
+                <nav>
+                  <ul>
+                    <li>
+                      <a href="#about-app">About this app</a>
+                    </li>
+                    <li>
+                      <a href="#authors">Authors</a>
+                    </li>
+                    <li>
+                      <a href="#contact-us">Contact us</a>
+                    </li>
+                  </ul>
+                </nav>
             </div>
         </header>
 
@@ -30,7 +43,7 @@
     
     <!--Footer-->
     <footer>
-        <div class="row">
+        <div class="d-flex justify-content-center">
           <div class="column" id="seek-help">
             <h3 class="heading-3">Need help managing your alcohol intake?<br>Check out these resources:</h3><br>
             <ul>
@@ -61,6 +74,10 @@
       </footer>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-   <script type="text/javascript" src="./assets/js/script.js"></script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
+    <script>
+      console.log(document.cookie);
+      document.cookie = "Max-Age=2600000; None"
+    </script>
 
 </html>

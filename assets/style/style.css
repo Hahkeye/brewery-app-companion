@@ -45,13 +45,15 @@ h1 {
     border-radius: 25%;   
 }
 
-nav ul li {
-    margin: 0px 10px;    
-    font-size: 1rem;
-    text-decoration: none;   
-    padding-bottom: 2px;
-    display: inline;
-    justify-content: center;
+nav ul li a{
+    display:block;
+    color: #f28e1c;
+    font-weight: bold;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items:flex-start;
+    list-style: none;
+    /* line-height: -100px; */
 }
 
 .heading-2 {
@@ -133,7 +135,7 @@ footer {
     opacity: 0.8;
     text-align: center;
     padding: 10px 10px;
-    margin: 50px;    
+    margin: 50px;
 }
 
 .left, .right {   
@@ -144,11 +146,11 @@ footer {
     width: 30%
 }
 
-.row:after {
+/* .row:after {
     content: "";
     display: table;
     clear: both;
-}
+} */
 
 #authors li {
     padding-top: 10px; 
@@ -201,10 +203,15 @@ footer {
 }
 
 .cardflip {
-    background-color: transparent;
-    width: 300px;
+    display:flex;
+    background-color:white;
+    opacity: 1;
+    width: 1000px;
     height: 300px;
     perspective: 1000px;
+    padding: 20px;
+    margin: auto;
+    margin-top: 50px;
 }
   
 .innercardflip {
@@ -214,7 +221,7 @@ footer {
     text-align: center;
     transition: transform 1.0s;
     transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(232, 224, 13, 0.2);
+    box-shadow: white;
 }
   
 .cardflip.hover .innercardflip {
@@ -229,12 +236,15 @@ footer {
 }
   
 .cardflip-front{
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 0, 0); 
+    background-color: rgb(255, 255, 255, 1);
+    opacity: 1 !important;
+    color: #f28e1c;
+    
 }
   
 .cardflip-back {
-    background-color: rgb(0, 0, 0);
-    color: rgb(0, 42, 255);    
+    background-color: rgb(255, 255, 255, 1);
+    opacity: 1 !important;
+    color: #f28e1c;
     transform: rotateY(180deg);
 }
