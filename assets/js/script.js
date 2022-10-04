@@ -227,7 +227,7 @@ function populateBrews(){
     }
 }
 
-$('#health-facts').on('click',function(event){
+$('#facts').on('click',function(event){
     if($(event.target).attr("class")== "fold"){
         if($(event.target).next('div').css("display")  == "block"){
             $(event.target).next('div').css("display","none");
