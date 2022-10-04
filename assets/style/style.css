@@ -1,4 +1,4 @@
-/* Global styling */
+* Global styling */
 * {
     margin: 0;
     padding: 0;
@@ -45,6 +45,23 @@ h1 {
     border-radius: 25%;   
 }
 
+nav ul li a {
+    display:block;
+    color: #f28e1c;
+    font-weight: bold;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items:flex-start;
+    list-style: none;
+    line-height: -100px;
+    }
+  
+    /* How to display inline? */
+    /* margin: 0px 30px;    
+    font-size: 1rem;
+    text-decoration: none;   
+    padding-bottom: 2px; */
+
 nav ul li {
     margin: 0px 10px;    
     font-size: 1rem;
@@ -79,6 +96,11 @@ nav ul li {
 }
 
 
+.button {
+    border-color: transparent;
+}
+
+
 /* Page 1 main content styling */
 .main-content-1 {
     background-color: white;
@@ -96,20 +118,12 @@ nav ul li {
 #fun-facts {
     padding: 20px 20px;
     margin: 50px;
-    /* margin-left: 200px;
-    margin-right: 200px;
-    margin-top: 50px;
-    margin-bottom: 50px; */
     font-size: 1.25rem;
 }
 
 #health-facts {
     padding: 20px 20px;
     margin: 50px;
-    /* margin-left: 200px;
-    margin-right: 200px;
-    margin-top: 50px;
-    margin-bottom: 50px; */
     font-size: 1.25rem;         
 }
 
@@ -201,40 +215,52 @@ footer {
 }
 
 .cardflip {
-    background-color: transparent;
-    width: 300px;
+    display:flex;
+    background-color:white;
+    opacity: 1;
+    width: 1000px;
     height: 300px;
     perspective: 1000px;
-}
+    padding: 20px;
+    margin: auto;
+    margin-top: 50px;
+  }
   
-.innercardflip {
+  .innercardflip {
     position: relative;
     width: 100%;
     height: 100%;
     text-align: center;
     transition: transform 1.0s;
     transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(232, 224, 13, 0.2);
-}
+    box-shadow: white;
+  }
   
-.cardflip.hover .innercardflip {
+  .cardflip.hover .innercardflip {
     transform: rotateY(180deg);
-}
+  }
   
-.cardflip-front, .cardflip-back {
+  .cardflip-front, .cardflip-back {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-}
+  }
   
-.cardflip-front{
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 0, 0); 
-}
+  .cardflip-front{
+    background-color: rgb(255, 255, 255, 1);
+    opacity: 1 !important;
+    color: #f28e1c;
+    
+    
+  }
   
-.cardflip-back {
-    background-color: rgb(0, 0, 0);
-    color: rgb(0, 42, 255);    
+  .cardflip-back {
+    background-color: rgb(255, 255, 255, 1);
+    opacity: 1 !important;
+    color: #f28e1c;
+    
+    
     transform: rotateY(180deg);
-}
+  }
+
