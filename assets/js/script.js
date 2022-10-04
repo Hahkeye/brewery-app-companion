@@ -116,7 +116,6 @@ async function getBreweriesByCoordCode(latLon,numberOfBreweries=5){
     }catch(e){
         console.log("Error in fetching breweries ", e);
     }    
-    // console.log(data);     // Is this the correct location to call this function?
 }
 async function validCity(state){
     let city=$('#city').val().toLowerCase();
@@ -236,7 +235,7 @@ $('#health-facts').on('click',function(event){
             $(event.target).next('div').css("display","block");
         }
     }
-  });
+});
   
 
 //Listeners / onloads
@@ -266,4 +265,4 @@ $(document).ready(function() {
         $(this).toggleClass('hover');
     });
   
-  });
+});

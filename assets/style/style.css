@@ -41,7 +41,8 @@ h1 {
     background-color: white;
     opacity: 0.8;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;    
+    text-align: center; 
+    border-radius: 25%;   
 }
 
 nav ul li {
@@ -74,7 +75,7 @@ nav ul li {
     margin-left: 25%; 
     margin-top: 50px;  
     text-align: center;
-    font-weight: bold;    
+    font-weight: bold;       
 }
 
 
@@ -89,29 +90,35 @@ nav ul li {
 #about-app {
     padding: 20px 20px;
     margin: 50px;
-    font-size: 1.25rem;
+    font-size: 1.25rem;    
 }
 
 #fun-facts {
     padding: 20px 20px;
-    margin-left: 200px;
+    margin: 50px;
+    /* margin-left: 200px;
     margin-right: 200px;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 50px; */
     font-size: 1.25rem;
 }
 
 #health-facts {
     padding: 20px 20px;
-    margin-left: 200px;
+    margin: 50px;
+    /* margin-left: 200px;
     margin-right: 200px;
     margin-top: 50px;
-    margin-bottom: 50px;
-    font-size: 1.25rem;    
+    margin-bottom: 50px; */
+    font-size: 1.25rem;         
+}
+
+#health-facts div div {
+    display: none;
 }
 
 .fold {
-    color: #f28e1c;     
+    color: #f28e1c;        
 }
 
 .landing-page-facts {
@@ -231,4 +238,3 @@ footer {
     color: rgb(0, 42, 255);    
     transform: rotateY(180deg);
 }
-
