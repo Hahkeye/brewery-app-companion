@@ -26,8 +26,8 @@ class Brewery{
         tempBody.attr('class','card-body');
         tempBody.append($('<h3>').text("Name: "+this.name));
         tempBody.append($('<p>').text("City: "+this.city));
-        tempBody.append($('<p>').text("PhoneNumber: "+this.phone));
-        tempBody.append($('<p>').text("Addres: "+this.address));
+        tempBody.append($('<p>').text("Phone Number: "+this.phone));
+        tempBody.append($('<p>').text("Address: "+this.address));
         tempBody.append($('<p>').text("Website: "+this.url));
         tempCard.on("click",function(){
             console.log("memes")
@@ -220,7 +220,7 @@ function populateBrews(){
     }
 }
 
-$('#facts').on('click',function(event){
+$('#health-facts').on('click',function(event){
     if($(event.target).attr("class")== "fold"){
         if($(event.target).next('div').css("display")  == "block"){
             $(event.target).next('div').css("display","none");
