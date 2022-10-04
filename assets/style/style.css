@@ -196,3 +196,7 @@ footer {
     transform: rotateY(180deg);
   }
 
+.facts {
+  text-align: center;
+  color: white;
+} 
