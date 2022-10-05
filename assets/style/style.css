@@ -45,11 +45,7 @@ h1 {
     border-radius: 25%;   
 }
 
-<<<<<<< HEAD
-nav ul li a{
-=======
 nav ul li a {
->>>>>>> ef5fcfd679dddd049c8e41e3250f029e6f4d4b94
     display:block;
     color: #f28e1c;
     font-weight: bold;
@@ -57,18 +53,9 @@ nav ul li a {
     justify-content: space-between;
     align-items:flex-start;
     list-style: none;
-<<<<<<< HEAD
-    /* line-height: -100px; */
-=======
     line-height: -100px;
-    }
+}
   
-    /* How to display inline? */
-    /* margin: 0px 30px;    
-    font-size: 1rem;
-    text-decoration: none;   
-    padding-bottom: 2px; */
-
 nav ul li {
     margin: 0px 10px;    
     font-size: 1rem;
