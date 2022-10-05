@@ -54,7 +54,7 @@ class Game{
         let tempInner = $('<div>').attr("class","innercardflip");
         let tempFront = $('<div>').attr("class","cardflip-front");
         tempFront.append($('<h1>').text(this.name));
-        tempFront.append($('<img>').attr("src",`http://mineboss.asuscomm.com:56733/images/?name=${this.img}`).attr("alt",`Picture of ${this.img.split("."[0])}`).attr("width","350px").attr("height","200px"));
+        tempFront.append($('<img>').attr("src",`https://mineboss.asuscomm.com:56733/images/?name=${this.img}`).attr("alt",`Picture of ${this.img.split("."[0])}`).attr("width","350px").attr("height","200px"));
         let tempBack = $('<div>').attr("class","cardflip-back");
         tempBack.append($('<h3>').text("Watch this to learn how to play!"));
         tempBack.append($('<iframe>').attr("id","ytplayer").attr("type","text/html").attr("width","600px").attr("height","200px").attr("src",`${this.howtTo}`));
@@ -193,7 +193,7 @@ async function tempWeatherStorage(){
         }      
         
         try{
-            const response = await fetch (`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`);
+            const response = await fetch (`https://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`);
             const data = await response.json();
             // console.log(data);
             localStorage.setItem("forecast", JSON.stringify(data));
@@ -206,7 +206,7 @@ async function tempWeatherStorage(){
 async function populateGames(){//grabs game list from api objectifys them.
     let tempTarget = $('.games-lists');
     try{
-        const response = await fetch(`http://mineboss.asuscomm.com:56733/games`);
+        const response = await fetch(`https://mineboss.asuscomm.com:56733/games`);
         const data = await response.json();
         // console.log(data);
         for(let i of data){
