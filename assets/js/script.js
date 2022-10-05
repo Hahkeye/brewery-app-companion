@@ -93,7 +93,7 @@ function promptLocationInput() {
 // If geolocation is accepted, translate lat/long into zip code
 async function getZipFromLatLong(){
     try{
-        const response = await fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`);
+        const response = await fetch(`https://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`);
         const data = await response.json();
         // console.log(data.postalCodes[0].postalCode);
         // return data.postalCodes[0].postalCode;
@@ -157,7 +157,7 @@ async function getWeatherByZipCode(zipCode){
     
     // First fetch to capture zipcode "Key"
     try{    
-        const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=${zipCode[0]},${zipCode[1]}`);
+        const response = await fetch(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=${zipCode[0]},${zipCode[1]}`);
         const data = await response.json();
         // console.log(data);
         key = data.Key;
@@ -168,7 +168,7 @@ async function getWeatherByZipCode(zipCode){
     
     // Second fetch to capture area forecast based on key
     try{
-        const response = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`);
+        const response = await fetch(`https://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`);
         const data = await response.json();
         // console.log("weather ", data);
         return data;
@@ -182,7 +182,7 @@ async function tempWeatherStorage(){
     if (!localStorage.getItem("forecast")){
 
         try{
-            const response = await fetch (`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`);
+            const response = await fetch (`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`);
             const data = await response.json();
             // console.log(data);
             localStorage.setItem("location-id", JSON.stringify(data));
