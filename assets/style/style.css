@@ -1,4 +1,4 @@
-/* Global styling */
+* Global styling */
 * {
     margin: 0;
     padding: 0;
@@ -21,14 +21,14 @@ header {
     background-size:cover;
     width: 100%;
     height: 100%;
-    justify-content:center;
+    justify-content: center;
     flex-wrap: wrap;   
 }
 
 h1 {
     font-weight: bold;
     font-size: 2rem;
-    align-items: center;
+    text-align: center;
     margin:auto;
 }
 
@@ -41,20 +41,55 @@ h1 {
     background-color: white;
     opacity: 0.8;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;    
+    text-align: center; 
+    border-radius: 25%;   
 }
 
+<<<<<<< HEAD
+nav ul li a{
+=======
 nav ul li a {
+>>>>>>> ef5fcfd679dddd049c8e41e3250f029e6f4d4b94
+    display:block;
+    color: #f28e1c;
+    font-weight: bold;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items:flex-start;
+    list-style: none;
+<<<<<<< HEAD
+    /* line-height: -100px; */
+=======
+    line-height: -100px;
+    }
+  
     /* How to display inline? */
-    margin: 0px 30px;    
+    /* margin: 0px 30px;    
+    font-size: 1rem;
+    text-decoration: none;   
+    padding-bottom: 2px; */
+
+nav ul li {
+    margin: 0px 10px;    
     font-size: 1rem;
     text-decoration: none;   
     padding-bottom: 2px;
+    display: inline;
+    justify-content: center;
+>>>>>>> ef5fcfd679dddd049c8e41e3250f029e6f4d4b94
 }
 
-/* #facts {
-    display: none;
-} */
+.heading-2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f28e1c;
+}
+
+.heading-3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f28e1c;
+}
   
 
 /* Page 1 and 2 search bar styling */
@@ -65,7 +100,12 @@ nav ul li a {
     margin-left: 25%; 
     margin-top: 50px;  
     text-align: center;
-    font-weight: bold;    
+    font-weight: bold;       
+}
+
+
+.button {
+    border-color: transparent;
 }
 
 
@@ -77,18 +117,10 @@ nav ul li a {
     margin-top: 50px;
 }
 
-footer {
-    background-color: white;
-    opacity: 0.8;
-    text-align: center;
-    padding: 20px 20px;
-    margin: 50px;
-}
-
 #about-app {
     padding: 20px 20px;
     margin: 50px;
-    font-size: 1.25rem;
+    font-size: 1.25rem;    
 }
 
 #fun-facts {
@@ -100,7 +132,15 @@ footer {
 #health-facts {
     padding: 20px 20px;
     margin: 50px;
-    font-size: 1.25rem;
+    font-size: 1.25rem;         
+}
+
+#health-facts div div {
+    display: none;
+}
+
+.fold {
+    color: #f28e1c;        
 }
 
 .landing-page-facts {
@@ -108,10 +148,45 @@ footer {
     padding: 10px 10px;
 }
 
-#authors {
-    padding: 20px 20px;
-    /* margin-top: 25px; Why isn't this styling correctly? */
-    /* want these to display inline */
+
+/* Footer styling */
+footer {
+    background-color: white;
+    opacity: 0.8;
+    text-align: center;
+    padding: 10px 10px;
+    margin: 50px;
+}
+
+.left, .right {   
+   width: 35%;
+}
+
+.middle {
+    width: 30%
+}
+
+/* .row:after {
+    content: "";
+    display: table;
+    clear: both;
+} */
+
+#authors li {
+    padding-top: 10px; 
+    margin-left: 120px;
+    margin-right: 120px; 
+    text-align: center;        
+}
+
+#seek-help {
+    margin: 30px 50px;
+    text-align: center;
+}
+
+#contact-us {
+    margin: 30px 50px;
+    text-align: center;
 }
 
 
@@ -125,16 +200,6 @@ footer {
     margin-top: 25px;
 }
 
-.heading-2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.heading-3 {
-    font-size: 1.25rem;
-    font-weight: bold;
-}
-
 .search-bar-2 {
     background-color: white;
     opacity: 0.8;
@@ -145,6 +210,8 @@ footer {
     font-weight: bold;   
 }
 
+
+/* Page 3 styling */
 .search-bar-3 {
     background-color: white;
     opacity: 0.8;
@@ -154,12 +221,18 @@ footer {
     text-align: center;
     font-weight: bold;  
 }
+
 .cardflip {
-    background-color: transparent;
-    width: 300px;
+    display:flex;
+    background-color:white;
+    opacity: 1;
+    width: 1000px;
     height: 300px;
     perspective: 1000px;
-  }
+    padding: 20px;
+    margin: auto;
+    margin-top: 50px;
+}
   
   .innercardflip {
     position: relative;
@@ -168,8 +241,8 @@ footer {
     text-align: center;
     transition: transform 1.0s;
     transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(232, 224, 13, 0.2);
-  }
+    box-shadow: white;
+}
   
   .cardflip.hover .innercardflip {
     transform: rotateY(180deg);
@@ -182,17 +255,17 @@ footer {
     backface-visibility: hidden;
   }
   
-  .cardflip-front{
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 0, 0);
+.cardflip-front{
+    background-color: rgb(255, 255, 255, 1);
+    opacity: 1 !important;
+    color: #f28e1c;
     
-    
-  }
+}
   
-  .cardflip-back {
-    background-color: rgb(0, 0, 0);
-    color: rgb(0, 42, 255);
-    
+.cardflip-back {
+    background-color: rgb(255, 255, 255, 1);
+    opacity: 1 !important;
+    color: #f28e1c;
     transform: rotateY(180deg);
   }
 

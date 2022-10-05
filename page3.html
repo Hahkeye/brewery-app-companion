@@ -12,25 +12,70 @@
     </head>
 
     <body> 
-
         <header>
             <div class="jumbotron">
-                <h1>FunBrew</h1>
-                <p id="tagline">The world's leading app for breweries and drinking games!</p>
+              <h1>FunBrew</h1>
+              <p id="tagline">The world's leading app for breweries and drinking games!</p>
+              <nav>
+                <ul>
+                  <li>
+                    <a href="#about-app">About this app</a>
+                  </li>
+                  <li>
+                    <a href="#authors">Authors</a>
+                  </li>
+                  <li>
+                    <a href="#contact-us">Contact us</a>
+                  </li>
+                </ul>
+              </nav>
             </div>
         </header>
 
         <div class="search-bar-3 w-25">    
             <h2 class="heading-2">Return to the previous page</h2>
-            <button type="submit" id="go-back-button" onclick="history.back();return false;">Go back</button>   <!--Does this need to be submit?-->             
+            <button type="submit" id="go-back-button" onclick="history.back();return false;">&nbsp; Go back &nbsp;</button>   <!--Does this need to be submit?-->             
         </div>
 
         <div class="brewer-info"></div>
-        <div class="games-lists"></div>
-
-
+        <div class="games-lists"></div> 
+    <!--Footer-->
+    <footer>
+        <div class="d-flex justify-content-center">
+          <div class="column" id="seek-help">
+            <h3 class="heading-3">Need help managing your alcohol intake?<br>Check out these resources:</h3><br>
+            <ul>
+              <li>
+                <a href="https://www.youtube.com/watch?v=l60MnDJklnM">Have you been drinking too much lately? Watch this video:</a>
+              </li>
+              <li>
+                <a href="https://alcoholtreatment.niaaa.nih.gov//">Help is just one click away!</a>
+              </li>
+            </ul>
+          </div>
+          <div class="column" id="authors">
+            <h3 class="heading-3">Authors</h3>
+            <ul>
+              <li>Hunter Adcock</li>
+              <li>Kayla Justice</li>
+              <li>Ryan Gustafson</li>
+              <li>Ricky Moua</li>
+              <li>Luis Tarantini</li>
+            </ul>
+          </div>
+          <div class="column" id="contact-us">
+            <h3 class="heading-3">Contact us</h3>
+            <p>If you have any questions feel free to contact us through email at:<br><a href="mailto:funBrew@gmail.com"> funBrew@gmail.com</a>
+            </p>
+          </div>       
+        </div>
+      </footer>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-   <script type="text/javascript" src="./assets/js/script.js"></script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
+    <script>
+      console.log(document.cookie);
+      document.cookie = "Max-Age=2600000; None"
+    </script>
 
 </html>
