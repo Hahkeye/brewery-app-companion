@@ -12,12 +12,14 @@ var brewerys=[];
 var games=[];
 
 class Brewery{
-    constructor(blob){
+    constructor(blob,w){
         this.name = blob.name;
         this.phone = blob.phone;
         this.url = blob.website_url;
         this.city = blob.city;
         this.address = (blob.street + " " + blob.city + " " + blob.state + " " + blob.postal_code);
+        this.coords=[blob.latitude,blob.longitude];
+        this.weather=w;
     }
     toHtml(){
         let tempCard = $('<div>');
@@ -29,11 +31,15 @@ class Brewery{
         tempBody.append($('<p>').text("PhoneNumber: "+this.phone));
         tempBody.append($('<p>').text("Addres: "+this.address));
         tempBody.append($('<p>').text("Website: "+this.url));
-        tempCard.on("click",function(){
-            console.log("memes")
-            window.location.href="./page3.html?games=yes";
-        });
-        return tempCard.append(tempBody);
+        let weatherDiv = $('<div>');
+        weatherDiv.append($('<h3>').text("Forecast"));
+        weatherDiv.append($('<p>').text(this.weather.Headline.Text));
+        weatherDiv.append($('<p>').text(this.weather.DailyForecasts[0].Day.IconPhrase));
+        weatherDiv.append($('<p>').text(`Maxium: ${this.weather.DailyForecasts[0].Temperature.Maximum.Value} ${this.weather.DailyForecasts[0].Temperature.Maximum.Unit}°`));
+        weatherDiv.append($('<p>').text(`Minimum: ${this.weather.DailyForecasts[0].Temperature.Minimum.Value} ${this.weather.DailyForecasts[0].Temperature.Maximum.Unit}°`));
+        tempCard.append(tempBody);
+        tempCard.append(weatherDiv);
+        return tempCard;
     }
 }
 
@@ -48,10 +54,10 @@ class Game{
         let tempInner = $('<div>').attr("class","innercardflip");
         let tempFront = $('<div>').attr("class","cardflip-front");
         tempFront.append($('<h1>').text(this.name));
-        tempFront.append($('<img>').attr("src",`http://mineboss.asuscomm.com:56733/images/?name=${this.img}`).attr("alt",`Picture of ${this.img.split("."[0])}`).attr("width","200px").attr("height","200px"));
+        tempFront.append($('<img>').attr("src",`http://mineboss.asuscomm.com:56733/images/?name=${this.img}`).attr("alt",`Picture of ${this.img.split("."[0])}`).attr("width","350px").attr("height","200px"));
         let tempBack = $('<div>').attr("class","cardflip-back");
         tempBack.append($('<h3>').text("Watch this to learn how to play!"));
-        tempBack.append($('<iframe>').attr("id","ytplayer").attr("type","text/html").attr("width","200px").attr("height","125px").attr("src",`${this.howtTo}`));
+        tempBack.append($('<iframe>').attr("id","ytplayer").attr("type","text/html").attr("width","600px").attr("height","200px").attr("src",`${this.howtTo}`));
         tempInner.append(tempFront);
         tempInner.append(tempBack)
         tempCard.append(tempInner);
@@ -73,36 +79,36 @@ $(function(){
 });
 
 // Logging geolocation information
-function showLocation (position) {
+function showLocation(position) {
     coords = position.coords;
     window.location.href = `./page2.html?latlon=${position.coords.latitude},${position.coords.longitude}`;
 
 }
 
 // If user blocks geolocation, prompt them to input city and state
-function promptLocationInput () {
+function promptLocationInput() {
     alert("Please enter a city and state.");
 }
    
 // If geolocation is accepted, translate lat/long into zip code
-async function getZipFromLatLong (){
+async function getZipFromLatLong(){
     try{
         const response = await fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords.latitude}&lng=${coords.longitude}&maxRows=1&style=SHORT&username=hahkeye`);
         const data = await response.json();
-        console.log(data.postalCodes[0].postalCode);
+        // console.log(data.postalCodes[0].postalCode);
         // return data.postalCodes[0].postalCode;
     }catch(e){
         console.log("Error in fetching zipcodes ", e);
     }
 }
 
-async function getBreweriesByCoordCode(zipCode,numberOfBreweries=8){
+async function getBreweriesByCoordCode(latLon,numberOfBreweries=5){
     try{
-        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_dist=${zipCode[0]},${zipCode[1]}&per_page=${numberOfBreweries}`);
+        const response = await fetch(`https://api.openbrewerydb.org/breweries?by_dist=${latLon[0]},${latLon[1]}&per_page=${numberOfBreweries}`);
         const data = await response.json();
-        console.log(data);
+        const weather =  await getWeatherByZipCode(latLon);
         for(let b of data){
-            let tempB = new Brewery(b);
+            let tempB = new Brewery(b,weather);
             brewerys.push(tempB);
         }
         populateBrews()
@@ -110,7 +116,6 @@ async function getBreweriesByCoordCode(zipCode,numberOfBreweries=8){
     }catch(e){
         console.log("Error in fetching breweries ", e);
     }    
-    // console.log(data);     // Is this the correct location to call this function?
 }
 async function validCity(state){
     let city=$('#city').val().toLowerCase();
@@ -121,10 +126,10 @@ async function validCity(state){
             alert("Please enter a valid city.");
         }else{
             const data = await response.json();
-            console.log(data.places[0].latitude);
-            console.log(data.places[0].longitude);
-            console.log("2,"+data.places[0]["post code"]);
-            console.log(tempForecast);
+            // console.log(data.places[0].latitude);
+            // console.log(data.places[0].longitude);
+            // console.log("2,"+data.places[0]["post code"]);
+            // console.log(tempForecast);
             window.location.href = `./page2.html?latlon=${data.places[0].latitude},${data.places[0].longitude}`;
 
         }
@@ -152,7 +157,7 @@ async function getWeatherByZipCode(zipCode){
     
     // First fetch to capture zipcode "Key"
     try{    
-        const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=45.5%2C-94.1`);
+        const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi&q=${zipCode[0]},${zipCode[1]}`);
         const data = await response.json();
         // console.log(data);
         key = data.Key;
@@ -165,6 +170,7 @@ async function getWeatherByZipCode(zipCode){
     try{
         const response = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${key}?apikey=%09cDt63DqtaKBplCaTQdLTUsKRTCQZaAYi`);
         const data = await response.json();
+        // console.log("weather ", data);
         return data;
     }catch(e){
         console.log("Error in fetching the weather ", e);
@@ -229,10 +235,10 @@ $('#health-facts').on('click',function(event){
             $(event.target).next('div').css("display","block");
         }
     }
-  });
+});
   
 
-//Listeners
+//Listeners / onloads
 
 // Geolocation listener
 $('#getGeo').on('click',function(){
@@ -253,10 +259,11 @@ $(function(){
 
 });
 
-$(document).ready(function() {  
+// $(document).ready(function() {  
 
-    $('.cardflip').click(function() {
-        $(this).toggleClass('hover');
-    });
+//     $('.cardflip').click(function() {
+//         console.log("adsads");
+//         $(this).toggleClass('hover');
+//     });
   
-  });
+// });
