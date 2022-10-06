@@ -30,7 +30,8 @@ class Brewery{
         tempBody.append($('<p>').text("City: "+this.city));
         tempBody.append($('<p>').text("PhoneNumber: "+this.phone));
         tempBody.append($('<p>').text("Addres: "+this.address));
-        tempBody.append($('<p>').text("Website: "+this.url));
+        // tempBody.append($('<p>').text("Website: "+this.url));
+        tempBody.append($('<a>').text("Website: "+this.url).attr("href",this.url));
         let weatherDiv = $('<div>');
         weatherDiv.append($('<h3>').text("Forecast"));
         weatherDiv.append($('<p>').text(this.weather.Headline.Text));
@@ -206,9 +207,9 @@ async function tempWeatherStorage(){
 async function populateGames(){//grabs game list from api objectifys them.
     let tempTarget = $('.games-lists');
     try{
-        const response = await fetch(`https://mineboss.asuscomm.com:56733/games`);
+        const response = await fetch('https://mineboss.asuscomm.com:56733/games');
         const data = await response.json();
-        // console.log(data);
+        console.log(data);
         for(let i of data){
             let x =new Game(i);
             // console.log(x.toHtml());
@@ -258,12 +259,3 @@ $(function(){
     }
 
 });
-
-// $(document).ready(function() {  
-
-//     $('.cardflip').click(function() {
-//         console.log("adsads");
-//         $(this).toggleClass('hover');
-//     });
-  
-// });
